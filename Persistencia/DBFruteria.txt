@@ -22,6 +22,16 @@ create table proveedor(
  PRIMARY KEY (idProveedor)
 );
 
+create table administrador(
+ idAdministrador int(11) not null AUTO_INCREMENT,
+ nombre varchar(50) not null,
+ correo varchar(50) not null,
+ clave varchar(50) not null,
+ estado int not null,
+ codigoActivacion int not null,
+ PRIMARY KEY (idAdministrador)
+);
+
 create table producto(
     idProducto int(11) not null AUTO_INCREMENT,
     nombre varchar(50) not null,
