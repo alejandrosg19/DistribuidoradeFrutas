@@ -14,11 +14,6 @@
             $this -> estado = $estado;
         }
 
-        public function consultar(){
-            return "select * 
-                    from cliente";
-        }
-
         public function validarCorreo(){
             return "select idCliente
                     from cliente
@@ -29,5 +24,16 @@
             return "insert into cliente values('','".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
         }
 
+        public function autenticar(){
+            return "select idCliente 
+                    from cliente
+                    where correo = '" . $this -> correo ."' and clave = '" . md5($this -> clave) . "'";
+        }
+
+        public function traerInfo(){
+            return "select idCliente, nombre, correo
+                    from cliente
+                    where idCliente = '". $this -> idCliente ."'";
+        }
     }
 ?>

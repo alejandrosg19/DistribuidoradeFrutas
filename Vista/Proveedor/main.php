@@ -1,6 +1,6 @@
 <?php
-$administrador = new Administrador($_SESSION["id"]);
-$administrador->traerInfo();
+$proveedor = new Proveedor($_SESSION["id"]);
+$proveedor -> traerInfo();
 ?>
 
 <div class="container-fluid" style="background-color: #FFE716;">
@@ -16,7 +16,7 @@ $administrador->traerInfo();
                 <h5 class="my-0 font-weight-normal text-white">Frutas de la Mejor Calidad</h5>
             </div>
             <div class="pt-3 text-center col-xl-3 col-lg-3 col-md-3 col-sm-12 order-xl-3 order-lg-3 order-md-3 order-sm-3  order-xs-3 order-3">
-                <h5 class="my-0 font-weight-normal text-dark"><strong>Administrador:</strong> <?php echo $administrador->getNombre() ?> </h5>
+                <h5 class="my-0 font-weight-normal text-dark"><strong>Proveedor:</strong> <?php echo $proveedor->getNombre() ?> </h5>
             </div>
         </div>
         <div class="row">

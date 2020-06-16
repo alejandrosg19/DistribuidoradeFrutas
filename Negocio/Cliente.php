@@ -25,19 +25,19 @@ class Cliente{
     }
 
     public function getNombre(){
-        $this -> nombre;
+        return $this -> nombre;
     }
 
     public function getCorreo(){
-        $this -> correo;
+        return $this -> correo;
     }
 
     public function getClave(){
-        $this -> clave;
+        return $this -> clave;
     }
 
     public function getEstado(){
-        $this -> estado;
+        return $this -> estado;
     }
 
     public function validarCorreo(){
@@ -55,6 +55,28 @@ class Cliente{
         $this -> conexion -> abrir();
         $codigoActivacion  = rand(100,1000);
         $this -> conexion -> ejecutar($this -> clienteDAO -> registrarCliente(md5($codigoActivacion)));
+        $this -> conexion -> cerrar();
+    }
+
+    public function autenticar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> autenticar());
+        $this -> conexion -> cerrar();
+        if($this -> conexion -> numFilas()!=null){
+            $result = $this -> conexion -> extraer();
+            $this -> idCliente = $result[0];
+            return true;
+        }else{
+            return false;
+        }   
+    }
+
+    public function traerInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> traerInfo());
+        $datos = $this -> conexion -> extraer();
+        $this -> nombre = $datos[1];
+        $this -> correo = $datos[2];
         $this -> conexion -> cerrar();
     }
 }

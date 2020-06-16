@@ -25,5 +25,17 @@ class ProveedorDAO{
         return "insert into proveedor 
                 values('','".$this -> nombre ."','".$this -> correo."','".md5($this -> clave)."','".$this -> estado."','".md5($codigoActivacion)."')";
     }
+
+    public function autenticar(){
+        return "select idProveedor 
+                from proveedor
+                where correo = '" . $this -> correo ."' and clave = '" . md5($this -> clave) . "'";
+    }
+
+    public function traerInfo(){
+        return "select idProveedor, nombre, correo
+                from proveedor
+                where idProveedor = '". $this -> idProveedor ."'";
+    }
 }
 ?>

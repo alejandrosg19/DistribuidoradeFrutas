@@ -9,21 +9,21 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="Img/1.jpg" class="d-block w-100">
+            <img src="Vista/Img/1.jpg" class="d-block w-100">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="Img/2.jpg" class="d-block w-100" alt="...">
+            <img src="Vista/Img/2.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="Img/3.jpg" class="d-block w-100" alt="...">
+            <img src="Vista/Img/3.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -42,10 +42,10 @@
     </div>
     <div class="col-xl-3 col-lg-3 col-md-12 col-12 p-3 d-lg-block d-sm-none d-md-none d-none ">
       <div>
-        <img src="Img/5.png">
+        <img src="Vista/Img/5.png">
       </div>
       <div class="mt-xl-5 mt-lg-5 mt-md-2">
-        <img src="Img/6.png" alt="">
+        <img src="Vista/Img/6.png" alt="">
       </div>
 
     </div>

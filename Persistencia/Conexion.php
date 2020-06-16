@@ -14,7 +14,7 @@ class Conexion{
     }
 
     public function extraer(){
-        return $this -> result -> ferch_row();
+        return $this -> result -> fetch_row();
     }
     
     public function cerrar(){

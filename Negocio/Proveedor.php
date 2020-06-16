@@ -58,5 +58,27 @@ class Proveedor{
         $this -> conexion -> ejecutar($this -> proveedorDAO -> registrarProveedor($codigoActivacion));
         $this -> conexion -> cerrar();
     }
+
+    public function autenticar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> autenticar());
+        $this -> conexion -> cerrar();
+        if($this -> conexion -> numFilas()!=null){
+            $result = $this -> conexion -> extraer();
+            $this -> idProveedor = $result[0];
+            return true;
+        }else{
+            return false;
+        }    
+    }
+
+    public function traerInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> traerInfo());
+        $datos = $this -> conexion -> extraer();
+        $this -> nombre = $datos[1];
+        $this -> correo = $datos[2];
+        $this -> conexion -> cerrar();
+    }
 }
 ?>
