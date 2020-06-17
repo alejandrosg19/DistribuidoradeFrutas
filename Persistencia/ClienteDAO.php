@@ -35,5 +35,10 @@
                     from cliente
                     where idCliente = '". $this -> idCliente ."'";
         }
+
+        public function actualizarInfo(){
+            return "update cliente set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
+                    where idCliente = '". $this -> idCliente ."'";
+        }
     }
 ?>

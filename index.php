@@ -18,7 +18,10 @@ if (isset($_GET["cerrarSesion"]) || !isset($_SESSION["id"])) {
     $_SESSION["id"] = "";
 }
 
-$urlsinValidacion = array("Vista/Auth/Autenticar.php");
+$urlsinValidacion = array(
+    "Vista/Auth/Autenticar.php",
+    "Vista/Registrar.php"
+);
 
 if(in_array($pid,$urlsinValidacion)){
     include $pid;
@@ -40,3 +43,10 @@ if(in_array($pid,$urlsinValidacion)){
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
 </style>
+
+<!--Scrip que permite mostrar el modal alerta de error o succes en mainPrincipal-->
+<script>
+  $(document).ready(function() {
+    $("#mostrarmodal").modal("show");
+  });
+</script>

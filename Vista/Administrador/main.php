@@ -29,13 +29,20 @@ $administrador->traerInfo();
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Frutas
+                                    Bodega
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">TODAS LAS FRUTAS</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Neutras</a>
-                                    <a class="dropdown-item" href="#">Dulces</a>
+                                    <a class="dropdown-item" href="#">Crear Producto</a>
+                                    <a class="dropdown-item" href="#">Listar Productos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Crear nuevo usuario</a>
+                                    <a class="dropdown-item" href="#">Listar Usuarios</a>
                                 </div>
                             </li>
                             <li class="nav-item active">

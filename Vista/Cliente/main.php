@@ -53,7 +53,7 @@ $cliente->traerInfo();
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" ><i class="fas fa-user"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Actualizar Información</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/actualizarInfo.php")?>">Actualizar Información</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?cerrarsesion">Cerrar Sesion</a>
                                 </div>
