@@ -1,6 +1,6 @@
 <?php
 $proveedor = new Proveedor($_SESSION["id"]);
-$proveedor -> traerInfo();
+$proveedor->traerInfo();
 ?>
 
 <div class="container-fluid" style="background-color: #FFE716;">
@@ -27,6 +27,9 @@ $proveedor -> traerInfo();
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Proveedor/sesionProveedor.php") ?>"><i class="fas fa-home"></i></a>
+                            </li>
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Frutas

@@ -19,6 +19,7 @@ $cliente->traerInfo();
                 <h5 class="my-0 font-weight-normal text-dark"><strong>Cliente:</strong> <?php echo $cliente->getNombre() ?> </h5>
             </div>
         </div>
+        <!--Nabvar-->
         <div class="row">
             <div class="col-8 p-0">
                 <nav class="navbar navbar-expand-lg navbar-light pb-0">
@@ -27,12 +28,15 @@ $cliente->traerInfo();
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/sesionCliente.php")?>"><i class="fas fa-home"></i></a>
+                            </li>
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Frutas
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">TODAS LAS FRUTAS</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProducto.php")?>">TODAS LAS FRUTAS</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Neutras</a>
                                     <a class="dropdown-item" href="#">Dulces</a>
@@ -51,9 +55,9 @@ $cliente->traerInfo();
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown active">
-                                <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" ><i class="fas fa-user"></i></a>
+                                <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"><i class="fas fa-user"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/actualizarInfo.php")?>">Actualizar Información</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/actualizarInfo.php") ?>">Actualizar Información</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?cerrarsesion">Cerrar Sesion</a>
                                 </div>

@@ -18,8 +18,7 @@ if (isset($_POST["Actualizar"])) {
                 <div class="card-body">
                     <div class="row p-3">
                         <div class="col-3">
-                        <img src="http://icons.iconarchive.com/icons/mahm0udwally/all-flat/128/User-icon.png" width="100%" class="img-thumbnail">
-                        
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Elliot_Grieveson.png" width="100%" class="img-thumbnail">
                         </div>
                         <div class="col-9">
                             <form action="index.php?pid= <?php echo base64_encode("Vista/Cliente/actualizarInfo.php") ?>" method="POST">

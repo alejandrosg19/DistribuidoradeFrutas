@@ -27,13 +27,16 @@ $administrador->traerInfo();
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Administrador/sesionAdministrador.php") ?>"><i class="fas fa-home"></i></a>
+                            </li>
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Bodega
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Crear Producto</a>
-                                    <a class="dropdown-item" href="#">Listar Productos</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/crearProducto.php")?>">Crear Producto</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProducto.php")?>">Listar Productos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown active">
