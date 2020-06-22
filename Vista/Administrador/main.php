@@ -36,7 +36,7 @@ $administrador->traerInfo();
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/crearProducto.php")?>">Crear Producto</a>
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProducto.php")?>">Listar Productos</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoAdm.php")?>">Listar Productos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown active">

@@ -15,8 +15,8 @@ if (isset($_POST["Crear"])) {
     <div class="row mt-4">
         <div class="col-12">
             <div class="card text-center">
-                <div class="card-header bg-light text-dark">
-                    Crear Producto
+                <div class="card-header bg-dark text-white">
+                    <h4>Crear Producto</h4>
                 </div>
                 <div class="card-body">
                     <div class="row p-3">

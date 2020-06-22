@@ -36,7 +36,7 @@ $cliente->traerInfo();
                                     Frutas
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProducto.php")?>">TODAS LAS FRUTAS</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php")?>">TODAS LAS FRUTAS</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Neutras</a>
                                     <a class="dropdown-item" href="#">Dulces</a>

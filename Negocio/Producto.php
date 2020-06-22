@@ -40,6 +40,23 @@ class Producto{
         return $this -> imagen;
     }
 
+    public function traerInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> traerInfo());
+        $resultado = $this -> conexion -> extraer();
+        $this -> nombre = $resultado[1];
+        $this -> cantidad = $resultado[2];
+        $this -> precio = $resultado[3];
+        $this -> imagen = $resultado[4];
+        $this -> conexion -> cerrar();
+    }
+    
+    public function actualizarProducto(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> actualizarProducto());
+        $this -> conexion -> cerrar();
+    }
+
     public function validarProducto(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> productoDAO -> validarProducto());

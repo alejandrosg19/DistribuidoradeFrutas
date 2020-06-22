@@ -16,6 +16,18 @@ class ProductoDAO{
         $this -> imagen = $imagen;
     }
 
+    public function traerInfo(){
+        return "select idProducto, nombre, cantidad, precio, imagen
+                from producto
+                where idProducto = '". $this -> idProducto ."'";
+    }
+
+    public function actualizarProducto(){
+        return "update producto set 
+                nombre = '".$this -> nombre ."', cantidad = '".$this -> cantidad."', precio = '".$this -> precio."', imagen = '".$this -> imagen."'
+                where idProducto = '".$this -> idProducto."'";
+    }
+    
     public function validarProducto(){
         return "select idProducto 
                 from producto  

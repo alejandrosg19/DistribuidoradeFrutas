@@ -36,7 +36,6 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
     <div class="text-center m-2">
         <span><?php echo (($pagina - 1) * $cantidad) ?> al <?php echo ((($pagina - 1) * $cantidad) + count($listaProductos) - 1) ?> de <?php echo ($cant[0] - 1) ?> Registros Encontrados</span>
         <select id="cantidad" class="custom-select" onchange="Selected();" style="width: 60px">
-            <option selected></option>
             <option value="6" <?php echo ($cantidad == 6) ? "selected" : "" ?>>6</option>
             <option value="9" <?php echo ($cantidad == 9) ? "selected" : "" ?>>9</option>
             <option value="12" <?php echo ($cantidad == 12) ? "selected" : "" ?>>12</option>
@@ -64,7 +63,7 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
         <nav aria-label="...">
             <ul class="pagination">
                 <?php if ($pagina > 1) {
-                    echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProducto.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Previous</a></li>';
+                    echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoCliente.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Previous</a></li>';
                 } ?>
                 <?php for ($i = 1; $i <= $cantPagina; $i++) {
                     if ($pagina == $i) {
@@ -73,12 +72,12 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
                             "</li>";
                     } else {
                         echo "<li class='page-item'>" .
-                            "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Producto/listarProducto.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "'>" . $i . "</a>" .
+                            "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoCliente.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "'>" . $i . "</a>" .
                             "</li>";
                     }
                 } ?>
                 <?php if ($pagina < $cantPagina) {
-                    echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProducto.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Next</a></li>';
+                    echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoCliente.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Next</a></li>';
                 } ?>
             </ul>
         </nav>
@@ -87,7 +86,7 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
 <script>
     function Selected() {
         var valor = document.getElementById("cantidad").value;
-        url = "index.php?pid= <?php echo base64_encode("Vista/Producto/listarProducto.php") ?> &cantidad=" + valor;
+        url = "index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php") ?> &cantidad=" + valor;
         location.replace(url);
     }
 </script>
