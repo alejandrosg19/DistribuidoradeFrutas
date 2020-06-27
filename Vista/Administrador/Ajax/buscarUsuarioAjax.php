@@ -35,9 +35,18 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina);
             foreach ($listaClientes  as $clienteActual) {
                 echo "<tr>";
                 echo "<td>" . $clienteActual->getidCliente() . "</td>";
-                echo "<td>" . $clienteActual->getNombre() . "</td>";
-                echo "<td>" . $clienteActual->getCorreo() . "</td>";
 
+                /*PINTAR BUSQUEDA EDE NOMBRE EN TABLA*/
+                /*strtipos -> stripos ( string $haystack , string $needle [, int $offset = 0 ] ) Encuentra la posición numérica de la primera aparición de needle (aguja) en el string haystack (pajar).*/
+                $primeraPosicion = stripos($clienteActual->getNombre(), $filtro);
+                if ($primeraPosicion === false) {
+                    echo "<td>" . $clienteActual->getNombre() . "</td>";
+                } else {
+                    /*El siguiente codigo imprime primero la parte de la palabra hasta que encuentra el indice de $primeraPosicion, luego en negrila <mark> imprime desde el indice de primeraPosicion hasta el final de la palabra $filtro, y por ultimo imprime desde la primeraPosicion+la palabra del filtro, es decir el restante de la oracion*/
+                    echo "<td>" . substr($clienteActual->getNombre(), 0, $primeraPosicion) . "<strong>" . substr($clienteActual->getNombre(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($clienteActual->getNombre(), $primeraPosicion + strlen($filtro)) . "</td>";
+                }
+
+                echo "<td>" . $clienteActual->getCorreo() . "</td>";
                 echo "<td>";
                 echo "<select class='custom-select estado' data-idcliente='" . $clienteActual->getidCliente() . "' style='width: 150px'>";
                 echo "<option value='-1'";
@@ -85,7 +94,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina);
         <div class="">
             <div class="text-center m-2">
                 <span><?php echo (($pagina - 1) * $cantidad) ?> al <?php echo ((($pagina - 1) * $cantidad) + count($listaClientes) - 1) ?> de <?php echo ($cant[0] - 1) ?> Registros Encontrados</span>
-                <select id="cantidad" class="custom-select" onchange="Selected();" style="width: 60px" data-filtro="<?php echo $filtro?>">
+                <select id="cantidad" class="custom-select" onchange="Selected();" style="width: 60px" data-filtro="<?php echo $filtro ?>">
                     <option value="5" <?php echo ($cantidad == 5) ? "selected" : "" ?>>5</option>
                     <option value="10" <?php echo ($cantidad == 10) ? "selected" : "" ?>>10</option>
                     <option value="15" <?php echo ($cantidad == 15) ? "selected" : "" ?>>15</option>
@@ -97,7 +106,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina);
 
 <script>
     $("#cantidad").on("change", function() {
-        url = "index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php") ?>&cantidad=" + $(this).val()+ "&filtro=" + $(this).data("filtro");
+        url = "index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php") ?>&cantidad=" + $(this).val() + "&filtro=" + $(this).data("filtro");
         location.replace(url);
     });
 

@@ -6,7 +6,6 @@ if (isset($_GET["idProducto"])) {
     $producto = new Producto();
 }
 
-$row = 1;
 $cantidad = 6;
 if (isset($_GET["cantidad"])) {
     $cantidad = $_GET["cantidad"];
@@ -15,12 +14,17 @@ $pagina = 1;
 if (isset($_GET["pagina"])) {
     $pagina = $_GET["pagina"];
 }
-$cant = $producto->cantidadPaginas();
+$filtro = "";
+if (isset($_GET["filtro"])) {
+    $filtro = $_GET["filtro"];
+}
+$cant = $producto->cantidadPaginasFiltro($filtro);
 $cantPagina = intval($cant[0] / $cantidad);
 if (($cant[0] % $cantidad) != 0) {
     $cantPagina++;
 }
-$listaProductos = $producto->listarProductos($cantidad, $pagina);
+
+$listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
 ?>
 
 <div class="container">
@@ -28,62 +32,82 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
         <div class="card-header text-white bg-dark text-center">
             <h4>Productos</h4>
         </div>
-        <div class="text-center m-2">
-            <span><?php echo (($pagina - 1) * $cantidad) ?> al <?php echo ((($pagina - 1) * $cantidad) + count($listaProductos) - 1) ?> de <?php echo ($cant[0] - 1) ?> Registros Encontrados</span>
-            <select id="cantidad" class="custom-select" onchange="Selected();" style="width: 60px">
-                <option value="6" <?php echo ($cantidad == 6) ? "selected" : "" ?>>6</option>
-                <option value="9" <?php echo ($cantidad == 9) ? "selected" : "" ?>>9</option>
-                <option value="12" <?php echo ($cantidad == 12) ? "selected" : "" ?>>12</option>
-            </select>
+        <div class="d-flex text-center m-2 shadow-sm p-3 e rounded">
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
+                </form>
+            </div>
         </div>
-        <div class="card-body ">
-            <table class="table table-hover table-striped">
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Servicios</th>
-                </tr>
-                <tr>
-                    <?php
-                    $i = ($pagina - 1) * $cantidad;
-                    foreach ($listaProductos  as $productoActual) {
-                        echo "<tr>";
-                        echo "<td>" . $i . "</td>";
-                        echo "<td>" . $productoActual->getNombre() . "</td>";
-                        echo "<td>" . $productoActual->getCantidad() . "</td>";
-                        echo "<td>" . $productoActual->getPrecio() . "</td>";
-                        echo "<td> <a href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
-                        echo        "<a href='index.php?pid=" . base64_encode("Vista/Producto/editarProducto.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Producto'></span> </a> </td>";
-                        echo "</tr>";
-                        $i++;
-                    }
-                    ?>
-                </tr>
-            </table>
-            <div class="d-flex flex-row justify-content-center mt-4">
-                <nav aria-label="...">
-                    <ul class="pagination">
-                        <?php if ($pagina > 1) {
-                            echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoAdm.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Previous</a></li>';
-                        } ?>
-                        <?php for ($i = 1; $i <= $cantPagina; $i++) {
-                            if ($pagina == $i) {
-                                echo "<li class='page-item active'>" .
-                                    "<a class='page-link'>$i</a>" .
-                                    "</li>";
+
+        <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div id="contenido">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Servicios</th>
+                    </tr>
+                    <tr>
+                        <?php
+                        $i = ($pagina - 1) * $cantidad;
+                        foreach ($listaProductos  as $productoActual) {
+                            echo "<tr>";
+                            echo "<td>" . $i . "</td>";
+
+                            /*PINTAR BUSQUEDA DE NOMBRE EN TABLA*/
+                            /*strtipos -> stripos ( string $haystack , string $needle [, int $offset = 0 ] ) Encuentra la posición numérica de la primera aparición de needle (aguja) en el string haystack (pajar).*/
+                            $primeraPosicion = stripos($productoActual->getNombre(), $filtro);
+                            if ($primeraPosicion === false) {
+                                echo "<td>" . $productoActual->getNombre() . "</td>";
                             } else {
-                                echo "<li class='page-item'>" .
-                                    "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "'>" . $i . "</a>" .
-                                    "</li>";
+                                /*El siguiente codigo imprime primero la parte de la palabra hasta que encuentra el indice de $primeraPosicion, luego en negrila <mark> imprime desde el indice de primeraPosicion hasta el final de la palabra $filtro, y por ultimo imprime desde la primeraPosicion+la palabra del filtro, es decir el restante de la oracion*/
+                                echo "<td>" . substr($productoActual->getNombre(), 0, $primeraPosicion) . "<strong>" . substr($productoActual->getNombre(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($productoActual->getNombre(), $primeraPosicion + strlen($filtro)) . "</td>";
                             }
-                        } ?>
-                        <?php if ($pagina < $cantPagina) {
-                            echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoAdm.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '" tabindex="0" aria-disabled="false">Next</a></li>';
-                        } ?>
-                    </ul>
-                </nav>
+
+                            echo "<td>" . $productoActual->getCantidad() . "</td>";
+                            echo "<td>" . $productoActual->getPrecio() . "</td>";
+                            echo "<td> <a href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&idProducto=" . $productoActual->getIdProducto() . "&filtro=".$filtro."&cantidad=".$cantidad."&pagina=".$pagina."'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
+                            echo        "<a href='index.php?pid=" . base64_encode("Vista/Producto/editarProducto.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Producto'></span> </a> </td>";
+                            echo "</tr>";
+                            $i++;
+                        }
+                        ?>
+                    </tr>
+                </table>
+                <div class="d-flex justify-content-between mt-4">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <?php if ($pagina > 1) {
+                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoAdm.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Previous</a></li>';
+                            } ?>
+                            <?php for ($i = 1; $i <= $cantPagina; $i++) {
+                                if ($pagina == $i) {
+                                    echo "<li class='page-item active'>" .
+                                        "<a class='page-link'>$i</a>" .
+                                        "</li>";
+                                } else {
+                                    echo "<li class='page-item'>" .
+                                        "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "&filtro=" . $filtro . "'>" . $i . "</a>" .
+                                        "</li>";
+                                }
+                            } ?>
+                            <?php if ($pagina < $cantPagina) {
+                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Producto/listarProductoAdm.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Next</a></li>';
+                            } ?>
+                        </ul>
+                    </nav>
+                    <div class="text-center m-2">
+                        <span><?php echo (($pagina - 1) * $cantidad) ?> al <?php echo ((($pagina - 1) * $cantidad) + count($listaProductos) - 1) ?> de <?php echo ($cant[0] - 1) ?> Registros Encontrados</span>
+                        <select id="cantidad" class="custom-select" onchange="Selected();" style="width: 60px" data-filtro="<?php echo $filtro ?>">
+                            <option value="6" <?php echo ($cantidad == 6) ? "selected" : "" ?>>6</option>
+                            <option value="9" <?php echo ($cantidad == 9) ? "selected" : "" ?>>9</option>
+                            <option value="12" <?php echo ($cantidad == 12) ? "selected" : "" ?>>12</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -155,9 +179,18 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
 </style>
 
 <script>
-    function Selected() {
-        var valor = document.getElementById("cantidad").value;
-        url = "index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoAdm.php") ?> &cantidad=" + valor;
+    $("#cantidad").on("change", function() {
+        url = "index.php?pid=<?php echo base64_encode("Vista/Producto/listarProductoAdm.php") ?>&cantidad=" + $(this).val() + "&filtro=" + $(this).data("filtro");
         location.replace(url);
-    }
+    });
+
+    /*search filtro*/
+    $(document).ready(function() {
+        $("#search").keyup(function() {
+            if ($(this).val().length >= 3 || $(this).val().length == 0) {
+                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Producto/Ajax/buscarProductoAjax.php") ?>&filtro=" + $(this).val() + "&cantidad=" + $(this).data("cantidad");
+                $("#contenido").load(url);
+            }
+        });
+    });
 </script>

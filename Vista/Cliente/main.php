@@ -6,9 +6,9 @@ $cliente->traerInfo();
 <div class="container-fluid" style="background-color: #FFE716;">
     <div class="container">
         <div class="row pt-4 pb-3">
-            <div class="pt-3 col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
+                    <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
                 </div>
             </div>
             <div class="text-center col-xl-7 col-lg-7 col-md-7 col-sm-12 order-xl-2 order-lg-2 order-md-2 order-sm-1 order-xs-1 order-1">
@@ -29,14 +29,14 @@ $cliente->traerInfo();
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/sesionCliente.php")?>"><i class="fas fa-home"></i></a>
+                                <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/sesionCliente.php") ?>"><i class="fas fa-home"></i></a>
                             </li>
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Frutas
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php")?>">TODAS LAS FRUTAS</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php") ?>">TODAS LAS FRUTAS</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Neutras</a>
                                     <a class="dropdown-item" href="#">Dulces</a>

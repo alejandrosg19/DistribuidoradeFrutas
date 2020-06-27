@@ -9,9 +9,9 @@ if (isset($_GET["validacion"])) {
 <div class="container-fluid" style="background-color: #FFE716;">
   <div class="container">
     <div class="row pt-4">
-      <div class="pt-3 col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+      <div class=" col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
         <div class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
+          <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
         </div>
       </div>
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 text-center order-xl-2 order-lg-2 order-md-2 order-sm-1 order-xs-1 order-1">
@@ -36,15 +36,15 @@ if (isset($_GET["validacion"])) {
             </button>
           </div>
           <div class="modal-body">
-            <form action="index.php?pid= <?php echo base64_encode("Vista/Auth/Autenticar.php")?>" method="POST">
+            <form action="index.php?pid= <?php echo base64_encode("Vista/Auth/Autenticar.php") ?>" method="POST">
               <div class="form-group">
                 <label for="exampleInputEmail1">Direccion de correo electrónico</label>
-                <input type="email" id="Correo" name ="Correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" id="Correo" name="Correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted">No compartiremos su correo con nadie más.</small>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" id="Clave" name ="Clave" class="form-control" id="exampleInputPassword1">
+                <input type="password" id="Clave" name="Clave" class="form-control" id="exampleInputPassword1">
               </div>
               <div class="form-group text-center">
                 <input name="Ingresar" type="submit" class="btn btn-outline-dark">
@@ -96,8 +96,8 @@ if (isset($_GET["validacion"])) {
     </div>
     <!---NABVAR-->
     <div class="row">
-      <div class="col-8">
-        <nav class="navbar navbar-expand-lg navbar-light pb-0">
+      <div class="col-8 p-0 pt-2">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -138,10 +138,10 @@ if (isset($_GET["validacion"])) {
   if ($validacion == 1) {
     echo "<div class='alert alert-danger m-0 d-flex'>";
     echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Ya existe una cuenta asociado a este email</h5>";
-  }else if ($validacion == 2) {
+  } else if ($validacion == 2) {
     echo "<div class='alert alert-success m-0 text-center d-flex'>";
     echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro exitoso</h5>";
-  }else if($validacion ==3){
+  } else if ($validacion == 3) {
     echo "<div class='alert alert-danger m-0 text-center d-flex'>";
     echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Error en el correo o clave</h5>";
   }
@@ -153,5 +153,3 @@ if (isset($_GET["validacion"])) {
   echo "</div>";
   echo "</div>";
 } ?>
-
-

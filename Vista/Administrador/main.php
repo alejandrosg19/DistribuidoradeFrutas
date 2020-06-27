@@ -6,9 +6,9 @@ $administrador->traerInfo();
 <div class="container-fluid" style="background-color: #FFE716;">
     <div class="container">
         <div class="row pt-4 pb-3">
-            <div class="pt-3 col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
+                    <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
                 </div>
             </div>
             <div class="text-center col-xl-7 col-lg-7 col-md-7 col-sm-12 order-xl-2 order-lg-2 order-md-2 order-sm-1 order-xs-1 order-1">
@@ -35,8 +35,8 @@ $administrador->traerInfo();
                                     Bodega
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/crearProducto.php")?>">Crear Producto</a>
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoAdm.php")?>">Listar Productos</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/crearProducto.php") ?>">Crear Producto</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoAdm.php") ?>">Listar Productos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown active">
@@ -45,7 +45,7 @@ $administrador->traerInfo();
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Crear nuevo usuario</a>
-                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php")?>">Listar Usuarios</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php") ?>">Listar Usuarios</a>
                                 </div>
                             </li>
                             <li class="nav-item active">
@@ -63,7 +63,7 @@ $administrador->traerInfo();
                             <li class="nav-item dropdown active">
                                 <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"><i class="fas fa-user"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Administrador/actualizarInfo.php") ?>">Actualizar Información</a>
+                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Administrador/actualizarInfo.php") ?>">Actualizar Información</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?cerrarsesion">Cerrar Sesion</a>
                                 </div>

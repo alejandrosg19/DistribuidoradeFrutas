@@ -41,20 +41,6 @@
                     where idCliente = '". $this -> idCliente ."'";
         }
 
-        public function listarTodosClientes(){
-            return "select idCliente, nombre, correo, clave, estado
-                    from cliente";
-        }
-
-        public function cantidadPaginas(){
-            return "select count(idCliente) from cliente";
-        }
-
-        public function listarClientes($cantidad, $pagina){
-            return "select idCliente, nombre, correo, clave, estado
-                    from cliente
-                    limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
-        }
 
         public function actualizarEstado(){
             return "update cliente set estado = '". $this -> estado ."' where idCliente = '". $this -> idCliente. "'";

@@ -74,22 +74,22 @@ class Producto{
         $this -> conexion -> cerrar();
     }
 
-    public function cantidadPaginas(){
+    public function cantidadPaginasFiltro($filtro){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> productoDAO -> cantidadPaginas());
+        $this -> conexion -> ejecutar($this -> productoDAO -> cantidadPaginasFiltro($filtro));
         return $this -> conexion -> extraer();
     }
 
-    public function listarProductos($Cantidad, $Pagina){
+    public function listarFiltro($filtro,$cantidad,$pagina){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> productoDAO -> listarProductos($Cantidad,$Pagina));
-        $arrayproductos = array();
-        while(($resultado = $this -> conexion -> extraer()) != null){
-            $newProducto = new Producto($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
-            array_push($arrayproductos,$newProducto);
+        $this -> conexion -> ejecutar($this -> productoDAO -> listarFiltro($filtro,$cantidad,$pagina));
+        $arrayProductos = array();
+        while(($productoActual = $this -> conexion -> extraer())!=null){
+            $newProducto = new Producto($productoActual[0],$productoActual[1],$productoActual[2],$productoActual[3],$productoActual[4]);
+            array_push($arrayProductos,$newProducto);
         }
-        $this -> conexion -> cerrar();
-        return $arrayproductos;
+        $this -> conexion -> cerrar(); 
+        return $arrayProductos;
     }
 
 }

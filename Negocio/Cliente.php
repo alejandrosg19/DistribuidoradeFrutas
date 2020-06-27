@@ -93,35 +93,6 @@ class Cliente{
         $this -> conexion -> cerrar();
     }
 
-    public function listarTodosClientes(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> listarTodosClientes());
-        $listaClientes = array();
-        while(($resultado = $this -> conexion -> extraer())!=null){
-            $newCliente = new Cliente($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
-            array_push($listaClientes,$newCliente);
-        }
-        $this -> conexion -> cerrar();
-        return $listaClientes;
-    }
-
-    public function cantidadPaginas(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> cantidadPaginas());
-        return $this -> conexion -> extraer();
-    }
-
-    public function listarClientes($Cantidad, $Pagina){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> listarClientes($Cantidad,$Pagina));
-        $arrayClientes = array();
-        while(($resultado = $this -> conexion -> extraer()) != null){
-            $newCliente = new Cliente($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
-            array_push($arrayClientes,$newCliente);
-        }
-        $this -> conexion -> cerrar();
-        return $arrayClientes;
-    }
 
     public function actualizarEstado(){
         $this -> conexion -> abrir();

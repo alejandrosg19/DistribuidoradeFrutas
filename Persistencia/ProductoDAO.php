@@ -39,13 +39,16 @@ class ProductoDAO{
                 values ('".$this -> nombre."','".$this -> cantidad."','".$this -> precio."','". $this -> imagen."')";
     }
 
-    public function cantidadPaginas(){
-        return "select count(idProducto) from producto";
+    public function cantidadPaginasFiltro($filtro){
+        return "select count(idProducto) 
+                from producto
+                where idProducto like '%".$filtro."%' or nombre like '".$filtro."%'";
     }
 
-    public function listarProductos($cantidad, $pagina){
+    public function listarFiltro($filtro,$cantidad,$pagina){
         return "select idProducto, nombre, cantidad, precio, imagen
-                from Producto
+                from producto
+                where idProducto like '%".$filtro."%' or nombre like '".$filtro."%'
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
     }
 
