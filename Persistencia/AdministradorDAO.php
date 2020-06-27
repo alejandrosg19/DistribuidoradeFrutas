@@ -25,5 +25,10 @@
                     from administrador
                     where idAdministrador = '". $this -> idAdministrador ."'";
         }
+
+        public function actualizarInfo(){
+            return "update administrador set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
+                    where idAdministrador = '". $this -> idAdministrador ."'";
+        }
     }
 ?>

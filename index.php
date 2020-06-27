@@ -21,7 +21,7 @@ if (isset($_GET["cerrarSesion"]) || !isset($_SESSION["id"])) {
 
 $urlsinValidacion = array(
     "Vista/Auth/Autenticar.php",
-    "Vista/Registrar.php"
+    "Vista/Registrar.php",
 );
 
 if(in_array($pid,$urlsinValidacion)){

@@ -40,5 +40,37 @@
             return "update cliente set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
                     where idCliente = '". $this -> idCliente ."'";
         }
+
+        public function listarTodosClientes(){
+            return "select idCliente, nombre, correo, clave, estado
+                    from cliente";
+        }
+
+        public function cantidadPaginas(){
+            return "select count(idCliente) from cliente";
+        }
+
+        public function listarClientes($cantidad, $pagina){
+            return "select idCliente, nombre, correo, clave, estado
+                    from cliente
+                    limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+        }
+
+        public function actualizarEstado(){
+            return "update cliente set estado = '". $this -> estado ."' where idCliente = '". $this -> idCliente. "'";
+        }
+
+        public function cantidadPaginasFiltro($filtro){
+            return "select count(idCliente) 
+                    from cliente
+                    where idCliente like '%".$filtro."%' or nombre like '".$filtro."%' or correo like '".$filtro."%'";
+        }
+
+        public function listarFiltro($filtro,$cantidad,$pagina){
+            return "select idCliente, nombre, correo, estado
+                    from cliente
+                    where idCliente like '%".$filtro."%' or nombre like '".$filtro."%' or correo like '".$filtro."%'
+                    limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+        }
     }
 ?>

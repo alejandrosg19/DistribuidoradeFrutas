@@ -39,6 +39,13 @@ class Cliente{
     public function getEstado(){
         return $this -> estado;
     }
+    public function setidCliente($idCliente){
+        $this -> idCliente = $idCliente;
+    }
+
+    public function setEstado($estado){
+        $this -> estado = $estado;
+    }
 
     public function validarCorreo(){
         $this -> conexion -> abrir();
@@ -84,6 +91,60 @@ class Cliente{
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> actualizarInfo());
         $this -> conexion -> cerrar();
+    }
+
+    public function listarTodosClientes(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> listarTodosClientes());
+        $listaClientes = array();
+        while(($resultado = $this -> conexion -> extraer())!=null){
+            $newCliente = new Cliente($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
+            array_push($listaClientes,$newCliente);
+        }
+        $this -> conexion -> cerrar();
+        return $listaClientes;
+    }
+
+    public function cantidadPaginas(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> cantidadPaginas());
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarClientes($Cantidad, $Pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> listarClientes($Cantidad,$Pagina));
+        $arrayClientes = array();
+        while(($resultado = $this -> conexion -> extraer()) != null){
+            $newCliente = new Cliente($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
+            array_push($arrayClientes,$newCliente);
+        }
+        $this -> conexion -> cerrar();
+        return $arrayClientes;
+    }
+
+    public function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> actualizarEstado());
+        $this -> conexion -> cerrar();
+    }
+
+    public function cantidadPaginasFiltro($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> cantidadPaginasFiltro($filtro));
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarFiltro($filtro,$cantidad,$pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> listarFiltro($filtro,$cantidad,$pagina));
+        $arrayClientes = array();
+        while(($clienteActual = $this -> conexion -> extraer())!=null){
+            $newCliente = new Cliente($clienteActual[0],$clienteActual[1],$clienteActual[2],"",$clienteActual[3]);
+            array_push($arrayClientes,$newCliente);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayClientes;
     }
 }
 ?>

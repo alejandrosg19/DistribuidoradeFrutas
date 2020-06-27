@@ -59,10 +59,8 @@ if (isset($_POST["Actualizar"])) {
     echo "<div class='modal fade' id='mostrarmodal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
     echo "<div class='modal-dialog '>";
     echo "<div class='modal-content '>";
-    echo "<div class='modal-header alert alert-success m-0'>";
-    echo "<div class='text-center'>";
-    echo "<h5 class='modal-title' id='exampleModalLabel'>Producto Actualizado Correctamente</h5>";
-    echo "</div>";
+    echo "<div class='alert alert-success m-0 d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Producto Actualizado Correctamente</h5>";
     echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
     echo "<span aria-hidden='true'>&times;</span>";
     echo "</button>";

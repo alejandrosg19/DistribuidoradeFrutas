@@ -62,5 +62,11 @@ class Administrador{
         $this -> correo = $datos[2];
         $this -> conexion -> cerrar();
     }
+
+    public function actualizarInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> AdministradorDAO -> actualizarInfo());
+        $this -> conexion -> cerrar();
+    }
 }
 ?>

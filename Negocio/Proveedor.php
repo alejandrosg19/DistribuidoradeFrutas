@@ -80,5 +80,23 @@ class Proveedor{
         $this -> correo = $datos[2];
         $this -> conexion -> cerrar();
     }
+
+    public function actualizarInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> actualizarInfo());
+        $this -> conexion -> cerrar();
+    }
+
+    public function listarProveedor(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> listarProveedor());
+        $listaProveedor = array();
+        while(($resultado = $this -> conexion -> extraer())!=null){
+            $newProveedor = new Proveedor($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
+            array_push($listaProveedor,$newProveedor);
+        }
+        $this -> conexion -> cerrar();
+        return $listaProveedor;
+    }
 }
 ?>

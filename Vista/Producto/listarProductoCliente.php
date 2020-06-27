@@ -30,6 +30,8 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
     .sombra :hover {
         box-shadow: 2px 2px 5px #999;
     }
+
+    
 </style>
 
 <div class="container">
@@ -48,11 +50,15 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
             echo "<img src='";
             echo $productoActual->getImagen() . "' class='card-img-top';>";
             echo "<div class='card-body'>";
-            echo "<h5 class='card-title'>";
+            echo "<h5 class='card-title shadow-none'>";
             echo $productoActual->getNombre() . "</h5>";
-            echo "<p class='card-text'> $";
-            echo $productoActual->getPrecio() . "</p>
-            <a href='#' class='btn btn-dark'> Añadir al Carrito</a>";
+            echo "<p class='card-text shadow-none'> $";
+            echo $productoActual->getPrecio() . "</p>";
+            /*Javascrip
+            echo "<a href='#' class='btn btn-dark' data-toggle='modal' data-target='#exampleModal' onclick='enviar(".
+            $productoActual->getidProducto() . ")'> Añadir</a>";*/
+            /* jquery*/
+            echo "<a href='#' class='btn btn-dark detalle' data-toggle='modal' data-target='#exampleModal' data-idproducto='" . $productoActual->getidProducto() . "'> Añadir</a>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
@@ -83,6 +89,53 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
         </nav>
     </div>
 </div>
+
+<!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="text-center bg-dark text-white p-3">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de Producto</h5>
+            </div>
+            <div class="modal-body p-0" id="mostrar">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark">Añadir al Carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Script Ajax Detalle Producto-->
+
+<script>
+    var resultado = document.getElementById("mostrar");
+    /* jquery*/
+    $(function() {
+        $(".detalle").on("click", function() {
+            var valor = $(this).data("idproducto");
+            var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Producto/Ajax/detalleProductoAjax.php") ?>&idProducto=" + valor;
+            $("#mostrar").load(url);
+        });
+    });
+    /*Javascrip
+    function enviar(idProducto) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            resultado.innerHTML = xmlhttp.responseText;
+        }
+        xmlhttp.open("GET", "indexAjax.php?pid= <?php echo base64_encode("Vista/Producto/Ajax/detalleProductoAjax.php") ?> &idProducto=" + idProducto, true);
+        xmlhttp.send();
+    }*/
+</script>
+
 <script>
     function Selected() {
         var valor = document.getElementById("cantidad").value;

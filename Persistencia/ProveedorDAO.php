@@ -37,5 +37,15 @@ class ProveedorDAO{
                 from proveedor
                 where idProveedor = '". $this -> idProveedor ."'";
     }
+
+    public function actualizarInfo(){
+        return "update proveedor set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
+                where idProveedor = '". $this -> idProveedor ."'";
+    }
+
+    public function listarProveedor(){
+        return "select idProveedor, nombre, correo, clave, estado
+                from proveedor";
+    }
 }
 ?>

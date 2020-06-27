@@ -5,6 +5,7 @@ if (isset($_GET["validacion"])) {
 }
 ?>
 
+</style>
 <div class="container-fluid" style="background-color: #FFE716;">
   <div class="container">
     <div class="row pt-4">
@@ -135,19 +136,15 @@ if (isset($_GET["validacion"])) {
   echo "<div class='modal-dialog '>";
   echo "<div class='modal-content '>";
   if ($validacion == 1) {
-    echo "<div class='modal-header alert alert-danger m-0'>";
-    echo "<div class='text-center'>";
-    echo "<h5 class='modal-title' id='exampleModalLabel'>Ya existe una cuenta asociado a este email</h5>";
+    echo "<div class='alert alert-danger m-0 d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Ya existe una cuenta asociado a este email</h5>";
   }else if ($validacion == 2) {
-    echo "<div class='modal-header alert alert-success m-0 text-center'>";
-    echo "<div class='text-center'>";
-    echo "<h5 class='modal-title' id='exampleModalLabel'>Registro Exitoso</h5>";
+    echo "<div class='alert alert-success m-0 text-center d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro exitoso</h5>";
   }else if($validacion ==3){
-    echo "<div class='modal-header alert alert-danger m-0 text-center'>";
-    echo "<div class='text-center'>";
-    echo "<h5 class='modal-title' id='exampleModalLabel'>Error en el Correo o Clave</h5>";
+    echo "<div class='alert alert-danger m-0 text-center d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Error en el correo o clave</h5>";
   }
-  echo "</div>";
   echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
   echo "<span aria-hidden='true'>&times;</span>";
   echo "</button>";
