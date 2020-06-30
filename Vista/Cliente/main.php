@@ -1,6 +1,10 @@
 <?php
 $cliente = new Cliente($_SESSION["id"]);
 $cliente->traerInfo();
+
+$carrito = $_SESSION["carrito"];
+$carrito = unserialize($carrito);
+$span = count($carrito -> getArrayProductos());
 ?>
 
 <div class="container-fluid" style="background-color: #FFE716;">
@@ -51,7 +55,9 @@ $cliente->traerInfo();
             </div>
             <div class="col-4 d-flex flex-row-reverse text-dark">
                 <nav class="navbar navbar-expand-lg navbar-light pb-0 ">
-                    <a class="nav-link btn btn-outline-light border-0 text-dark" href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="d-flex">
+                        <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid=<?php echo base64_encode("Vista/Carrito/carritoCliente.php") ?>" style="position: relative;"><span id="notificacion" class="badge badge-primary" style="position: absolute; top: -2px; right: 0px; z-index:20;"><?php echo $span?></span><i class="fas fa-shopping-cart"></i></a>
+                    </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown active">
@@ -69,3 +75,12 @@ $cliente->traerInfo();
         </div>
     </div>
 </div>
+<script>
+    /**s eencarga de mostrar u ocultar la notificacion el carrito cada ves que es llamado el manu de cliente main */
+    var numero = parseInt($("#notificacion").text());
+    if (numero <= 0) {
+        $("#notificacion").hide()
+    } else {
+        $("#notificacion").show()
+    }
+</script>

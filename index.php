@@ -4,6 +4,9 @@ require_once "Negocio/Administrador.php";
 require_once "Negocio/Cliente.php";
 require_once "Negocio/Proveedor.php";
 require_once "Negocio/Producto.php";
+require_once "Negocio/Carrito.php";
+require_once "Negocio/Factura.php";
+require_once "Negocio/ProductoFactura.php";
 
 include "Vista/Main/head.php";
 
@@ -14,9 +17,12 @@ if (isset($_GET["pid"])) {
 } else {
     $_SESSION["id"] = "";
     $_SESSION["rol"] = "";
+    $_SESSION["carrito"]="";
 }
 if (isset($_GET["cerrarSesion"]) || !isset($_SESSION["id"])) {
     $_SESSION["id"] = "";
+    $_SESSION["rol"] = "";
+    $_SESSION["carrito"]="";
 }
 
 $urlsinValidacion = array(

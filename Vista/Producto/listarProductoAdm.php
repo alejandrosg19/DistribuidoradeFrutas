@@ -43,39 +43,30 @@ $listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
                 <table class="table table-hover table-striped">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Servicios</th>
-                    </tr>
-                    <tr>
-                        <?php
-                        $i = ($pagina - 1) * $cantidad;
-                        foreach ($listaProductos  as $productoActual) {
-                            echo "<tr>";
-                            echo "<td>" . $i . "</td>";
+                    <?php
+                    $i = ($pagina - 1) * $cantidad;
+                    foreach ($listaProductos  as $productoActual) {
+                        echo "<tr>";
+                        echo "<td>" . $i . "</td>";
 
-                            /*PINTAR BUSQUEDA DE NOMBRE EN TABLA*/
-                            /*strtipos -> stripos ( string $haystack , string $needle [, int $offset = 0 ] ) Encuentra la posición numérica de la primera aparición de needle (aguja) en el string haystack (pajar).*/
-                            $primeraPosicion = stripos($productoActual->getNombre(), $filtro);
-                            if ($primeraPosicion === false) {
-                                echo "<td>" . $productoActual->getNombre() . "</td>";
-                            } else {
-                                /*El siguiente codigo imprime primero la parte de la palabra hasta que encuentra el indice de $primeraPosicion, luego en negrila <mark> imprime desde el indice de primeraPosicion hasta el final de la palabra $filtro, y por ultimo imprime desde la primeraPosicion+la palabra del filtro, es decir el restante de la oracion*/
-                                echo "<td>" . substr($productoActual->getNombre(), 0, $primeraPosicion) . "<strong>" . substr($productoActual->getNombre(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($productoActual->getNombre(), $primeraPosicion + strlen($filtro)) . "</td>";
-                            }
-
-                            echo "<td>" . $productoActual->getCantidad() . "</td>";
-                            echo "<td>" . $productoActual->getPrecio() . "</td>";
-                            echo "<td> <a href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&idProducto=" . $productoActual->getIdProducto() . "&filtro=".$filtro."&cantidad=".$cantidad."&pagina=".$pagina."'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
-                            echo        "<a href='index.php?pid=" . base64_encode("Vista/Producto/editarProducto.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Producto'></span> </a> </td>";
-                            echo "</tr>";
-                            $i++;
+                        /*PINTAR BUSQUEDA DE NOMBRE EN TABLA*/
+                        /*strtipos -> stripos ( string $haystack , string $needle [, int $offset = 0 ] ) Encuentra la posición numérica de la primera aparición de needle (aguja) en el string haystack (pajar).*/
+                        $primeraPosicion = stripos($productoActual->getNombre(), $filtro);
+                        if ($primeraPosicion === false) {
+                            echo "<td>" . $productoActual->getNombre() . "</td>";
+                        } else {
+                            /*El siguiente codigo imprime primero la parte de la palabra hasta que encuentra el indice de $primeraPosicion, luego en negrila <mark> imprime desde el indice de primeraPosicion hasta el final de la palabra $filtro, y por ultimo imprime desde la primeraPosicion+la palabra del filtro, es decir el restante de la oracion*/
+                            echo "<td>" . substr($productoActual->getNombre(), 0, $primeraPosicion) . "<strong>" . substr($productoActual->getNombre(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($productoActual->getNombre(), $primeraPosicion + strlen($filtro)) . "</td>";
                         }
-                        ?>
-                    </tr>
+
+                        echo "<td>" . $productoActual->getCantidad() . "</td>";
+                        echo "<td>" . $productoActual->getPrecio() . "</td>";
+                        echo "<td> <a href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&idProducto=" . $productoActual->getIdProducto() . "&filtro=" . $filtro . "&cantidad=" . $cantidad . "&pagina=" . $pagina . "'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
+                        echo        "<a href='index.php?pid=" . base64_encode("Vista/Producto/editarProducto.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Producto'></span> </a> </td>";
+                        echo "</tr>";
+                        $i++;
+                    }
+                    ?>
                 </table>
                 <div class="d-flex justify-content-between mt-4">
                     <nav aria-label="...">

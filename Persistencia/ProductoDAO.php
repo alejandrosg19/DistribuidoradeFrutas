@@ -52,5 +52,15 @@ class ProductoDAO{
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
     }
 
+    public function cantidadPaginas(){
+        return "select count(idProducto) from producto";
+    }
+
+    public function listarProductos($cantidad, $pagina){
+        return "select idProducto, nombre, cantidad, precio, imagen
+                from Producto
+                limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+    }
+
 }
 ?>

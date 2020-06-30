@@ -7,6 +7,8 @@ $administrador = new Administrador("", "", $_POST["Correo"], $_POST["Clave"]);
 if ($cliente->autenticar()) {
     $_SESSION["id"] = $cliente -> getidCliente();
     $_SESSION["rol"] = "Cliente";
+    $carrito = new Carrito();
+    $_SESSION["carrito"] = serialize($carrito);
     header("Location: index.php?pid=". base64_encode("Vista/Cliente/sesionCliente.php"));
 } else if ($proveedor->autenticar()) {
     $_SESSION["id"] = $proveedor -> getIdProveedor();

@@ -117,5 +117,6 @@ class Cliente{
         $this -> conexion -> cerrar(); 
         return $arrayClientes;
     }
+
 }
 ?>
