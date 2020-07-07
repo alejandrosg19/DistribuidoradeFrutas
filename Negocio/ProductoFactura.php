@@ -53,5 +53,17 @@ class ProductoFactura
         $this -> conexion -> ejecutar($this -> productoFacturaDAO -> crearProductoFactura());
         $this -> conexion -> cerrar();
     }
+
+    public function traerfacturaProducto(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoFacturaDAO -> traerfacturaProducto());
+        $arrayP = array();
+        while(($facturaProducto = $this -> conexion -> extraer())!=null){
+            $NewfacturaProducto = new ProductoFactura($facturaProducto[0],$facturaProducto[1],$facturaProducto[2],$facturaProducto[3],$facturaProducto[4]);
+            array_push($arrayP,$NewfacturaProducto);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayP;
+    }
 }
 ?>

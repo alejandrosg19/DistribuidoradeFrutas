@@ -23,6 +23,12 @@ class FacturaDAO{
         $this->valor = $valor;
     }
 
+    public function traerInfo(){
+        return "select idFactura, fecha, idCliente, valor
+                from factura
+                where idFactura = '".$this -> idFactura."'";
+    }
+
     public function crearFactura(){
         return "insert into factura values('".$this -> idFactura."','".$this -> fecha."','".$this -> idCliente."','".$this -> valor."')";
     }
@@ -34,5 +40,17 @@ class FacturaDAO{
     public function actualizarValor(){
         return "update factura set valor = '".$this -> valor."' where idFactura = '".$this -> idFactura."'";
     }
+
+    public function cantidadPaginasFiltro($filtro){
+        return "select count(idFactura) 
+                from factura
+                where idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or idCliente like '".$filtro."%' or valor like '".$filtro."%'";
+    }
+
+    public function listarFiltro($filtro,$cantidad,$pagina){
+        return "select idFactura, fecha, idCliente, valor
+                from factura
+                where idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or idCliente like '".$filtro."%' or valor like '".$filtro."%'
+                limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+    }
 }
-?>

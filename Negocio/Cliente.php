@@ -7,17 +7,19 @@ class Cliente{
     private $correo;
     private $clave;
     private $estado;
+    private $foto;
     private $conexion;
     private $clienteDAO;
 
-    public function Cliente($idCliente = "", $nombre = "", $correo = "", $clave = "", $estado = ""){
+    public function Cliente($idCliente = "", $nombre = "", $correo = "", $clave = "", $estado = "", $foto=""){
         $this -> idCliente = $idCliente;
         $this -> nombre = $nombre;
         $this -> correo = $correo;
         $this -> clave = $clave;
         $this -> estado = $estado;
+        $this -> foto = $foto;
         $this -> conexion = new Conexion();
-        $this -> clienteDAO = new ClienteDAO($this -> idCliente, $this -> nombre, $this -> correo, $this -> clave, $this -> estado);
+        $this -> clienteDAO = new ClienteDAO($this -> idCliente, $this -> nombre, $this -> correo, $this -> clave, $this -> estado, $this -> foto);
     }
 
     public function getidCliente(){
@@ -38,6 +40,9 @@ class Cliente{
 
     public function getEstado(){
         return $this -> estado;
+    }
+    public function getFoto(){
+        return $this -> foto;
     }
     public function setidCliente($idCliente){
         $this -> idCliente = $idCliente;
@@ -61,6 +66,7 @@ class Cliente{
     public function registrarCliente(){
         $this -> conexion -> abrir();
         $codigoActivacion  = rand(100,1000);
+        echo $this -> clienteDAO -> registrarCliente(md5($codigoActivacion));
         $this -> conexion -> ejecutar($this -> clienteDAO -> registrarCliente(md5($codigoActivacion)));
         $this -> conexion -> cerrar();
     }
@@ -84,6 +90,19 @@ class Cliente{
         $datos = $this -> conexion -> extraer();
         $this -> nombre = $datos[1];
         $this -> correo = $datos[2];
+        $this -> estado = $datos[3];
+        $this -> foto = $datos[4];
+        $this -> conexion -> cerrar();
+    }
+    public function traerInfoCorreo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> traerInfoCorreo());
+        $datos = $this -> conexion -> extraer();
+        $this -> idCliente = $datos[0];
+        $this -> nombre = $datos[1];
+        $this -> correo = $datos[2];
+        $this -> estado = $datos[3];
+        $this -> foto = $datos[4];
         $this -> conexion -> cerrar();
     }
 

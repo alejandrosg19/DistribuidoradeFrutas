@@ -45,11 +45,16 @@ $administrador->traerInfo();
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Crear nuevo usuario</a>
-                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php") ?>">Listar Usuarios</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Cliente/listarClientes.php") ?>">Lista Clientes</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Proveedor/listarProveedores.php") ?>">Lista Proveedores</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/listarAdministrador.php") ?>">Lista Administradores</a>
                                 </div>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0" href="#">Reportes</a>
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid=<?php echo base64_encode("Vista/Factura/listaFacturas.php")?>">Facturas</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid=<?php echo base64_encode("Vista/Log/Log.php")?>">Log</a>
                             </li>
                         </ul>
                     </div>

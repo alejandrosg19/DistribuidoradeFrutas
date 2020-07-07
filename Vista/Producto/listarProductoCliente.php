@@ -104,9 +104,9 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
             </div>
             <div class="modal-body p-0">
                 <div style="display: none !important" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center divToast" style="min-height: 80px;">
-                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                        <div class="alert alert-success m-0 border-0">
-                            Producto añadido al carrito
+                    <div class="toast text-center" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                        <div id="divPtoast" class="">
+                            <p id="pToast" class="m-0"></p>
                         </div>
                     </div>
                 </div>
@@ -145,9 +145,7 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
     /*Mostra Notificacion de añadir al carrito dentro del modal de detalle producto*/
 
     $(".showToast").click(function() {
-        /*Mostrar div de mensaje "producto añadido al carrito" */
-        $(".divToast").css("display", "block");
-        $('.toast').toast('show');
+
 
         /*agregando producto a la variable de sesion carrito*/
         var cantidad = $(".cantidadProducto").val();
@@ -173,6 +171,20 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
             /*agregando cantidad de productos a la notificacion del carrito cuando se oprime el boton de agregar al carrito del modal*/
             $("#notificacion").text(res.cantidad);
             $("#notificacion").show()
+
+
+            /*Mostrar div de mensaje "producto añadido al carrito" o "no hay producto en stock" */
+            $(".divToast").css("display", "block");
+            
+            if (res.estado == true) {
+                $("#divPtoast").addClass("alert alert-success m-0 border-0 text-center");
+                $('#pToast').text("Producto añadido al carrito");
+            } else {
+                $("#divPtoast").addClass("alert alert-warning m-0 border-0 text-center");
+                $('#pToast').text("No poseemos stock de este producto, intentalo mas tarde");
+            }
+            $('.toast').toast('show');
+
         })
 
 

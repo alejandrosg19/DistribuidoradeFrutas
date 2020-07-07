@@ -51,7 +51,6 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                     </tr>
                     <tr>
                         <?php
-                        $i = ($pagina - 1) * $cantidad;
                         foreach ($listaClientes  as $clienteActual) {
                             echo "<tr>";
                             echo "<td>" . $clienteActual->getidCliente() . "</td>";
@@ -81,9 +80,9 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                             echo "</select>";
                             echo "</td>";
 
-                            echo "<td> <a href='#'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idcliente='".$clienteActual->getidCliente()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
+                            echo  "<a href='index.php?pid=" . base64_encode("Vista/Cliente/editarInfo.php") . "&idCliente=" . $clienteActual->getidCliente() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Administrador'></span> </a> </td>";
                             echo "</tr>";
-                            $i++;
                         }
                         ?>
                     </tr>
@@ -92,7 +91,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                     <nav aria-label="...">
                         <ul class="pagination">
                             <?php if ($pagina > 1) {
-                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Administrador/listarUsuarios.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Previous</a></li>';
+                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Cliente/listarClientes.php") . '&pagina=' . ($pagina - 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Previous</a></li>';
                             } ?>
                             <?php for ($i = 1; $i <= $cantPagina; $i++) {
                                 if ($pagina == $i) {
@@ -101,12 +100,12 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                                         "</li>";
                                 } else {
                                     echo "<li class='page-item'>" .
-                                        "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Administrador/listarUsuarios.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "&filtro=" . $filtro . "'>" . $i . "</a>" .
+                                        "<a class='page-link' href='index.php?pid=" . base64_encode("Vista/Cliente/listarClientes.php") . "&pagina=" . $i . "&cantidad=" . $cantidad . "&filtro=" . $filtro . "'>" . $i . "</a>" .
                                         "</li>";
                                 }
                             } ?>
                             <?php if ($pagina < $cantPagina) {
-                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Administrador/listarUsuarios.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Next</a></li>';
+                                echo '<li class="page-item"> <a class="page-link" href="index.php?pid=' . base64_encode("Vista/Cliente/listarClientes.php") . '&pagina=' . ($pagina + 1) . '&cantidad=' . $cantidad . '&filtro=' . $filtro . '" tabindex="0" aria-disabled="false">Next</a></li>';
                             } ?>
                         </ul>
                     </nav>
@@ -136,10 +135,27 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
         </div>
     </div>
 </div>
-
+<!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="text-center bg-dark text-white p-3">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle</h5>
+            </div>
+            <div class="modal-body p-0">
+                <div id="mostrar">
+                    ...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $("#cantidad").on("change", function() {
-        url = "index.php?pid=<?php echo base64_encode("Vista/Administrador/listarUsuarios.php") ?>&cantidad=" + $(this).val() + "&filtro=" + $(this).data("filtro");
+        url = "index.php?pid=<?php echo base64_encode("Vista/Cliente/listarClientes.php") ?>&cantidad=" + $(this).val() + "&filtro=" + $(this).data("filtro");
         location.replace(url);
     });
 
@@ -150,7 +166,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
             estado: $(this).val(),
         }
 
-        url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Administrador/Ajax/usuariosAjax.php") ?>";
+        url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Cliente/Ajax/clientesAjax.php") ?>";
         $.post(url, objJSON, function(info) {
             $res = JSON.parse(info);
             $("#vermodal").modal("show");
@@ -162,9 +178,18 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
     $(document).ready(function() {
         $("#search").keyup(function() {
             if ($(this).val().length >= 3 || $(this).val().length == 0) {
-                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Administrador/Ajax/buscarUsuarioAjax.php") ?>&filtro=" + $(this).val() + "&cantidad=" + $(this).data("cantidad");
+                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Cliente/Ajax/buscarClienteAjax.php") ?>&filtro=" + $(this).val() + "&cantidad=" + $(this).data("cantidad");
                 $("#contenido").load(url);
             }
         });
     });
+
+    /**Mostrar Info */
+    $(function(){
+        $(".detalle").on("click",function(){
+            var id = $(this).data("idcliente");
+            var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Ajax/infoUsuarios.php")?>&idCliente="+id+"&actor=2";
+            $("#mostrar").load(url);            
+        })
+    })
 </script>

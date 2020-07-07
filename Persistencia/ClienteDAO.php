@@ -5,13 +5,15 @@
         private $correo;
         private $clave;
         private $estado;
+        private $foto;
 
-        public function ClienteDAO($idCliente = "", $nombre = "", $correo = "", $clave = "", $estado = ""){
+        public function ClienteDAO($idCliente = "", $nombre = "", $correo = "", $clave = "", $estado = "", $foto =""){
             $this -> idCliente = $idCliente;
             $this -> nombre = $nombre;
             $this -> correo = $correo;
             $this -> clave = $clave;
             $this -> estado = $estado;
+            $this -> foto = $foto;
         }
 
         public function validarCorreo(){
@@ -21,7 +23,8 @@
         }
 
         public function registrarCliente($codigoAtivacion){
-            return "insert into cliente values('','".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
+            return "insert into cliente (idCliente,nombre,correo,clave,estado,codigoActivacion)
+            values('','".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
         }
 
         public function autenticar(){
@@ -31,13 +34,18 @@
         }
 
         public function traerInfo(){
-            return "select idCliente, nombre, correo
+            return "select idCliente, nombre, correo, estado, foto
                     from cliente
                     where idCliente = '". $this -> idCliente ."'";
         }
+        public function traerInfoCorreo(){
+            return "select idCliente, nombre, correo, estado, foto
+                    from cliente
+                    where correo = '". $this -> correo ."'";
+        }
 
         public function actualizarInfo(){
-            return "update cliente set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
+            return "update cliente set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."', foto = '".$this -> foto."'
                     where idCliente = '". $this -> idCliente ."'";
         }
 

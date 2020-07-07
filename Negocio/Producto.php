@@ -54,6 +54,18 @@ class Producto{
         $this -> imagen = $resultado[4];
         $this -> conexion -> cerrar();
     }
+
+    public function traerInfoNombre(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> traerInfoNombre());
+        $resultado = $this -> conexion -> extraer();
+        $this -> idProducto = $resultado[0];
+        $this -> nombre = $resultado[1];
+        $this -> cantidad = $resultado[2];
+        $this -> precio = $resultado[3];
+        $this -> imagen = $resultado[4];
+        $this -> conexion -> cerrar();
+    }
     
     public function actualizarProducto(){
         $this -> conexion -> abrir();
@@ -115,5 +127,11 @@ class Producto{
         return $arrayproductos;
     }
 
+    public function actualizarCantidad(){
+        $this -> conexion -> abrir();
+        echo ($this -> productoDAO -> actualizarCantidad($this -> cantidad));
+        $this -> conexion -> ejecutar($this -> productoDAO -> actualizarCantidad($this -> cantidad));
+        $this -> conexion -> cerrar();
+    }
 }
 ?>

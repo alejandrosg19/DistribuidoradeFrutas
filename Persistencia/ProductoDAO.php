@@ -22,6 +22,12 @@ class ProductoDAO{
                 where idProducto = '". $this -> idProducto ."'";
     }
 
+    public function traerInfoNombre(){
+        return "select idProducto, nombre, cantidad, precio, imagen
+                from producto
+                where nombre = '". $this -> nombre ."'";
+    }
+
     public function actualizarProducto(){
         return "update producto set 
                 nombre = '".$this -> nombre ."', cantidad = '".$this -> cantidad."', precio = '".$this -> precio."', imagen = '".$this -> imagen."'
@@ -60,6 +66,10 @@ class ProductoDAO{
         return "select idProducto, nombre, cantidad, precio, imagen
                 from Producto
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+    }
+
+    public function actualizarCantidad($Nuevacantidad){
+        return "update producto set cantidad= '".$Nuevacantidad."' where idProducto = '".$this -> idProducto."'";
     }
 
 }

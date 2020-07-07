@@ -219,7 +219,7 @@ date_default_timezone_set('America/Bogota');
         $("#notificacion").text(numero);
         if (numero <= 0) {
             $("#notificacion").hide()
-        } else {   
+        } else {
             $("#notificacion").show()
         }
     })

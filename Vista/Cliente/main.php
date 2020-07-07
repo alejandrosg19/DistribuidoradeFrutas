@@ -35,19 +35,11 @@ $span = count($carrito -> getArrayProductos());
                             <li class="nav-item active">
                                 <a class="nav-link btn btn-outline-light border-0 text-dark" href="index.php?pid= <?php echo base64_encode("Vista/Cliente/sesionCliente.php") ?>"><i class="fas fa-home"></i></a>
                             </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Frutas
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php") ?>">TODAS LAS FRUTAS</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Neutras</a>
-                                    <a class="dropdown-item" href="#">Dulces</a>
-                                </div>
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php") ?>">Frutas</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0" href="#">Reportes</a>
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid= <?php echo base64_encode("")?>">Log</a>
                             </li>
                         </ul>
                     </div>

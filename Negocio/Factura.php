@@ -50,7 +50,15 @@ class Factura
         $this->valor = $valor;
     }
 
-
+    public function traerInfo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> traerInfo());
+        $this -> conexion -> cerrar();
+        $resultado = $this -> conexion -> extraer();
+        $this -> fecha = $resultado[1];
+        $this -> idCliente = $resultado[2];
+        $this -> valor = $resultado[3];
+    }
     public function crearFactura(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> facturaDAO -> crearFactura());
@@ -76,6 +84,24 @@ class Factura
         $this -> facturaDAO -> setValor($this -> valor);
         $this -> conexion -> ejecutar($this -> facturaDAO -> actualizarValor());
         $this -> conexion -> cerrar();
+    }
+
+    public function cantidadPaginasFiltro($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> cantidadPaginasFiltro($filtro));
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarFiltro($filtro,$cantidad,$pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> listarFiltro($filtro,$cantidad,$pagina));
+        $arrayFacturas = array();
+        while(($facturaActual = $this -> conexion -> extraer())!=null){
+            $newFactura = new Factura($facturaActual[0],$facturaActual[1],$facturaActual[2],$facturaActual[3]);
+            array_push($arrayFacturas,$newFactura);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayFacturas;
     }
 }
 ?>

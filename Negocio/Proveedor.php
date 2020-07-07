@@ -8,17 +8,19 @@ class Proveedor{
     private $correo;
     private $clave;
     private $estado;
+    private $foto;
     private $conexion;
     private $proveedorDAO;
 
-    public function Proveedor($idProveedor = "", $nombre = "", $correo = "", $clave = "", $estado = ""){
+    public function Proveedor($idProveedor = "", $nombre = "", $correo = "", $clave = "", $estado = "",$foto =""){
         $this -> idProveedor = $idProveedor;
         $this -> nombre = $nombre;
         $this -> correo = $correo;
         $this -> clave = $clave;
         $this -> estado = $estado;
+        $this -> foto = $foto;
         $this -> conexion = new Conexion();
-        $this -> proveedorDAO = new ProveedorDAO($this -> idProveedor, $this -> nombre, $this -> correo, $this -> clave, $this -> estado);
+        $this -> proveedorDAO = new ProveedorDAO($this -> idProveedor, $this -> nombre, $this -> correo, $this -> clave, $this -> estado, $this -> foto);
     }
 
     public function getIdProveedor(){
@@ -39,6 +41,10 @@ class Proveedor{
 
     public function getEstado(){
         return $this -> estado;
+    }
+
+    public function getFoto(){
+        return $this -> foto;
     }
 
     public function validarCorreo(){
@@ -78,6 +84,19 @@ class Proveedor{
         $datos = $this -> conexion -> extraer();
         $this -> nombre = $datos[1];
         $this -> correo = $datos[2];
+        $this -> estado = $datos[3];
+        $this -> foto = $datos[4];
+        $this -> conexion -> cerrar();
+    }
+    public function traerInfoCorreo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> traerInfoCorreo());
+        $datos = $this -> conexion -> extraer();
+        $this -> idProveedor = $datos[0];
+        $this -> nombre = $datos[1];
+        $this -> correo = $datos[2];
+        $this -> estado = $datos[3];
+        $this -> foto = $datos[4];
         $this -> conexion -> cerrar();
     }
 
@@ -92,11 +111,35 @@ class Proveedor{
         $this -> conexion -> ejecutar($this -> proveedorDAO -> listarProveedor());
         $listaProveedor = array();
         while(($resultado = $this -> conexion -> extraer())!=null){
-            $newProveedor = new Proveedor($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
+            $newProveedor = new Proveedor($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4],$resultado[5]);
             array_push($listaProveedor,$newProveedor);
         }
         $this -> conexion -> cerrar();
         return $listaProveedor;
+    }
+
+    public function cantidadPaginasFiltro($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> cantidadPaginasFiltro($filtro));
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarFiltro($filtro,$cantidad,$pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> listarFiltro($filtro,$cantidad,$pagina));
+        $arrayProveedor = array();
+        while(($proveedorActual = $this -> conexion -> extraer())!=null){
+            $newProveedor = new Proveedor($proveedorActual[0],$proveedorActual[1],$proveedorActual[2],"",$proveedorActual[3]);
+            array_push($arrayProveedor,$newProveedor);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayProveedor;
+    }
+
+    public function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> proveedorDAO -> actualizarEstado());
+        $this -> conexion -> cerrar();
     }
 }
 ?>

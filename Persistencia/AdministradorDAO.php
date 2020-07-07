@@ -5,13 +5,19 @@
         private $correo;
         private $clave;
         private $estado;
+        private $foto;
 
-        public function AdministradorDAO($idAdministrador = "", $nombre = "", $correo = "", $clave = "", $estado = ""){
+        public function AdministradorDAO($idAdministrador = "", $nombre = "", $correo = "", $clave = "", $estado = "", $foto =""){
             $this -> idAdministrador = $idAdministrador;
             $this -> nombre = $nombre;
             $this -> correo = $correo;
             $this -> clave = $clave;
             $this -> estado = $estado;
+            $this -> foto = $foto;
+        }
+
+        public function getFoto(){
+            return $this -> foto;
         }
 
         public function autenticar(){
@@ -21,14 +27,30 @@
         }
 
         public function traerInfo(){
-            return "select idAdministrador, nombre, correo
+            return "select idAdministrador, nombre, correo, estado, foto
                     from administrador
                     where idAdministrador = '". $this -> idAdministrador ."'";
         }
 
         public function actualizarInfo(){
-            return "update administrador set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."'
+            return "update administrador set nombre = '".$this -> nombre ."', correo = '". $this -> correo ."', foto = '".$this -> foto."'
                     where idAdministrador = '". $this -> idAdministrador ."'";
         }
+
+        public function cantidadPaginasFiltro($filtro){
+            return "select count(idAdministrador) 
+                    from administrador
+                    where idAdministrador like '%".$filtro."%' or nombre like '".$filtro."%' or correo like '".$filtro."%'";
+        }
+
+        public function listarFiltro($filtro,$cantidad,$pagina){
+            return "select idAdministrador, nombre, correo, estado
+                    from administrador
+                    where idAdministrador like '%".$filtro."%' or nombre like '".$filtro."%' or correo like '".$filtro."%'
+                    limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+        }
+
+        public function actualizarEstado(){
+            return "update administrador set estado = '". $this -> estado ."' where idAdministrador = '". $this -> idAdministrador. "'";
+        }
     }
-?>
