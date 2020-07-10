@@ -21,7 +21,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina);
 ?>
 
 <div>
-    <table class="table table-hover table-striped">
+    <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
         <tr>
             <th>idCliente</th>
             <th>Nombre</th>

@@ -26,10 +26,27 @@
                     where correo = '" . $this -> correo ."' and clave = '" . md5($this -> clave) . "'";
         }
 
+        public function validarCorreo(){
+            return "select idAdministrador
+                    from administrador
+                    where correo = '" . $this -> correo . "'";
+        }
+
+        public function registrarAdm($codigoAtivacion){
+            return "insert into administrador (idAdministrador,nombre,correo,clave,estado,codigoActivacion)
+            values('','".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
+        }
+
         public function traerInfo(){
             return "select idAdministrador, nombre, correo, estado, foto
                     from administrador
                     where idAdministrador = '". $this -> idAdministrador ."'";
+        }
+
+        public function traerInfoCorreo(){
+            return "select idAdministrador, nombre, correo, estado, foto
+                    from administrador
+                    where correo = '". $this -> correo ."'";
         }
 
         public function actualizarInfo(){

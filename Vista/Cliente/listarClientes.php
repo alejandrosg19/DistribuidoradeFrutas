@@ -41,7 +41,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
 
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
                     <tr>
                         <th>idCliente</th>
                         <th>Nombre</th>
@@ -80,8 +80,8 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                             echo "</select>";
                             echo "</td>";
 
-                            echo "<td> <a href='#' class='detalle' data-idcliente='".$clienteActual->getidCliente()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
-                            echo  "<a href='index.php?pid=" . base64_encode("Vista/Cliente/editarInfo.php") . "&idCliente=" . $clienteActual->getidCliente() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Administrador'></span> </a> </td>";
+                            echo "<td> <a href='#' class='detalle' data-idcliente='".$clienteActual->getidCliente()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Cliente'></span> </a>";
+                            echo  "<a href='index.php?pid=" . base64_encode("Vista/Cliente/editarInfo.php") . "&idCliente=" . $clienteActual->getidCliente() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Cliente'></span> </a> </td>";
                             echo "</tr>";
                         }
                         ?>
@@ -127,7 +127,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
     <div class='modal-dialog '>
         <div class='modal-content '>
             <div class='alert alert-success p-3 m-0 text-center d-flex'>
-                <h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro aactualizado correctamente</h5>
+                <h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro actualizado correctamente</h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
@@ -158,7 +158,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
         url = "index.php?pid=<?php echo base64_encode("Vista/Cliente/listarClientes.php") ?>&cantidad=" + $(this).val() + "&filtro=" + $(this).data("filtro");
         location.replace(url);
     });
-
+    /**Cambio Estado */
     $(".estado").change(function() {
         var objJSON = {
             idCliente: $(this).data("idcliente"),

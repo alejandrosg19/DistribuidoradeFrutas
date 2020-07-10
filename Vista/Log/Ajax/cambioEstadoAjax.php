@@ -46,19 +46,19 @@ if ($info1[1] == "cliente") {
                             <p class="m-0">Correo: </p>
                             <p><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo $actor->getCorreo() ?></small></p>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between ">
                             <div>
                                 <h5 class="border-bottom p-1">Estado Anterior</h5>
-                                <div class="d-flex justify-content-between pr-3">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <p class="m-0">Estado: </p>
-                                    <p><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo $info3[1] ?></small></p>
+                                    <p class="m-0"><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo ($info3[1]==-1?"Bloqueado":($info3[1]==0?"Deshabilitado":"Habilitado")) ?></small></p>
                                 </div>
                             </div>
                             <div>
                                 <h5 class="border-bottom p-1">Nuevo Estado</h5>
-                                <div class="d-flex justify-content-between pr-3">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <p class="m-0">Estado: </p>
-                                    <p><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo $actor->getEstado() ?></small></p>
+                                    <p class="m-0"><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo ($actor->getEstado()==-1?"Bloqueado":($actor->getEstado()==0?"Deshabilitado":"Habilitado"))?></small></p>
                                 </div>
                             </div>
                         </div>

@@ -144,6 +144,12 @@ if (isset($_GET["validacion"])) {
   } else if ($validacion == 3) {
     echo "<div class='alert alert-danger m-0 text-center d-flex'>";
     echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Error en el correo o clave</h5>";
+  } else if($validacion == 4){
+    echo "<div class='alert alert-danger m-0 text-center d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Usuario bloqueado, comuniquese con un administrador</h5>";
+  } else if($validacion == 5){
+    echo "<div class='alert alert-warning m-0 text-center d-flex'>";
+    echo "<h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Usuario deshabilitado, espere a que un administrador lo habilite</h5>";
   }
   echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
   echo "<span aria-hidden='true'>&times;</span>";

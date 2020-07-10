@@ -22,42 +22,44 @@ $listaLog = $log->listarLog($cantidad, $pagina);
         </div>
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
-                    <tr>
-                        <th>Accion</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Actor</th>
-                        <th>Detalles</th>
-                    </tr>
-                    <tr>
-                        <?php
-                        foreach ($listaLog  as $logActual) {
-                            echo "<tr>";
-                            echo "<td>" . $logActual->getAccion() . "</td>";
-                            echo "<td>" . $logActual->getFecha() . "</td>";
-                            echo "<td>" . $logActual->getHora() . "</td>";
-                            if ($logActual->getActor() == "Cliente") {
-                                $cliente = new Cliente($logActual->getIdUsuario());
-                                $cliente->traerInfo();
-                                echo "<td>" . $logActual->getActor() . ": " . $cliente->getCorreo() . "</td>";
-                            } else if ($logActual->getActor() == "Proveedor") {
-                                $proveedor = new Proveedor($logActual->getIdUsuario());
-                                $proveedor->traerInfo();
-                                echo "<td>" . $logActual->getActor() . ": " . $proveedor->getCorreo() . "</td>";
-                            } else {
-                                $administrador = new Administrador($logActual->getIdUsuario());
-                                $administrador->traerInfo();
-                                echo "<td>" . $logActual->getActor() . ": " . $administrador->getCorreo() . "</td>";
-                            }
-                            echo "<td> <a href='#' class='detalle' data-toggle='modal' data-target='#exampleModal' data-function='" . $logActual->getAccion() . "' data-idlog='" . $logActual->getIdLog() . "' 
+                <div class="table table-responsive-sm table-responsive-md">
+                    <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
+                        <tr>
+                            <th>Accion</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Actor</th>
+                            <th>Detalles</th>
+                        </tr>
+                        <tr>
+                            <?php
+                            foreach ($listaLog  as $logActual) {
+                                echo "<tr>";
+                                echo "<td>" . $logActual->getAccion() . "</td>";
+                                echo "<td>" . $logActual->getFecha() . "</td>";
+                                echo "<td>" . $logActual->getHora() . "</td>";
+                                if ($logActual->getActor() == "Cliente") {
+                                    $cliente = new Cliente($logActual->getIdUsuario());
+                                    $cliente->traerInfo();
+                                    echo "<td>" . $logActual->getActor() . ": " . $cliente->getCorreo() . "</td>";
+                                } else if ($logActual->getActor() == "Proveedor") {
+                                    $proveedor = new Proveedor($logActual->getIdUsuario());
+                                    $proveedor->traerInfo();
+                                    echo "<td>" . $logActual->getActor() . ": " . $proveedor->getCorreo() . "</td>";
+                                } else {
+                                    $administrador = new Administrador($logActual->getIdUsuario());
+                                    $administrador->traerInfo();
+                                    echo "<td>" . $logActual->getActor() . ": " . $administrador->getCorreo() . "</td>";
+                                }
+                                echo "<td> <a href='#' class='detalle' data-toggle='modal' data-target='#exampleModal' data-function='" . $logActual->getAccion() . "' data-idlog='" . $logActual->getIdLog() . "' 
                                 ><span class='fas fa-info-circle' data-toggle='tooltip' data-placement='top' title='Información Producto'>
                             </span> </a></td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tr>
-                </table>
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tr>
+                    </table>
+                </div>
                 <div class="d-flex justify-content-between mt-4">
                     <nav aria-label="...">
                         <ul class="pagination">
@@ -135,6 +137,12 @@ $listaLog = $log->listarLog($cantidad, $pagina);
             } else if (fun == "Compra") {
                 $("#tamañoModal").addClass("modal-dialog modal-xl")
                 var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Log/Ajax/compraAjax.php") ?>&idLog=" + valor;
+            } else if (fun == "Cambio Estado Usuario") {
+                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Log/Ajax/CambioEstadoAjax.php") ?>&idLog=" + valor;
+            } else if (fun == "Cambio Estado Producto") {
+                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Log/Ajax/CambioEstadoProAjax.php") ?>&idLog=" + valor;
+            } else if (fun == "Proveer Producto") {
+                var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Log/Ajax/proveerProductoAjax.php") ?>&idLog=" + valor;
             }
             $("#title").text(fun);
             $("#mostrar").load(url);

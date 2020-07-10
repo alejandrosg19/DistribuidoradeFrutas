@@ -8,16 +8,18 @@ class Producto{
     private $cantidad;
     private $precio;
     private $imagen;
+    private $estado;
     private $productoDAO;
     private $conexion;
 
-    public function Producto($idProducto = "",$nombre = "", $cantidad = "", $precio = "", $imagen = ""){
+    public function Producto($idProducto = "",$nombre = "", $cantidad = "", $precio = "", $imagen = "",$estado=""){
         $this -> idProducto = $idProducto;
         $this -> nombre = $nombre;
         $this -> cantidad = $cantidad;
         $this -> precio = $precio;
         $this -> imagen = $imagen;
-        $this -> productoDAO = new ProductoDAO($this -> idProducto, $this -> nombre, $this -> cantidad, $this -> precio, $this -> imagen);
+        $this -> estado = $estado;
+        $this -> productoDAO = new ProductoDAO($this -> idProducto, $this -> nombre, $this -> cantidad, $this -> precio, $this -> imagen, $this -> estado);
         $this -> conexion = new Conexion();
     }
     public function getidProducto(){
@@ -40,6 +42,10 @@ class Producto{
         return $this -> imagen;
     }
 
+    public function getEstado(){
+        return $this -> estado;
+    }
+
     public function setCantidad($Cantidad){
         $this -> cantidad = $Cantidad;
     }
@@ -52,6 +58,7 @@ class Producto{
         $this -> cantidad = $resultado[2];
         $this -> precio = $resultado[3];
         $this -> imagen = $resultado[4];
+        $this -> estado = $resultado[5];
         $this -> conexion -> cerrar();
     }
 
@@ -64,6 +71,7 @@ class Producto{
         $this -> cantidad = $resultado[2];
         $this -> precio = $resultado[3];
         $this -> imagen = $resultado[4];
+        $this -> estado = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
@@ -101,13 +109,30 @@ class Producto{
         $this -> conexion -> ejecutar($this -> productoDAO -> listarFiltro($filtro,$cantidad,$pagina));
         $arrayProductos = array();
         while(($productoActual = $this -> conexion -> extraer())!=null){
-            $newProducto = new Producto($productoActual[0],$productoActual[1],$productoActual[2],$productoActual[3],$productoActual[4]);
+            $newProducto = new Producto($productoActual[0],$productoActual[1],$productoActual[2],$productoActual[3],$productoActual[4],$productoActual[5]);
             array_push($arrayProductos,$newProducto);
         }
         $this -> conexion -> cerrar(); 
         return $arrayProductos;
     }
 
+    public function cantidadPaginasProve($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> cantidadPaginasProve($filtro));
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarFiltroProve($filtro,$cantidad,$pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> listarFiltroProve($filtro,$cantidad,$pagina));
+        $arrayProductos = array();
+        while(($productoActual = $this -> conexion -> extraer())!=null){
+            $newProducto = new Producto($productoActual[0],$productoActual[1],$productoActual[2],$productoActual[3],$productoActual[4],$productoActual[5]);
+            array_push($arrayProductos,$newProducto);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayProductos;
+    }
     
     public function cantidadPaginas(){
         $this -> conexion -> abrir();
@@ -120,7 +145,7 @@ class Producto{
         $this -> conexion -> ejecutar($this -> productoDAO -> listarProductos($Cantidad,$Pagina));
         $arrayproductos = array();
         while(($resultado = $this -> conexion -> extraer()) != null){
-            $newProducto = new Producto($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4]);
+            $newProducto = new Producto($resultado[0],$resultado[1],$resultado[2],$resultado[3],$resultado[4],$resultado[5]);
             array_push($arrayproductos,$newProducto);
         }
         $this -> conexion -> cerrar();
@@ -129,8 +154,13 @@ class Producto{
 
     public function actualizarCantidad(){
         $this -> conexion -> abrir();
-        echo ($this -> productoDAO -> actualizarCantidad($this -> cantidad));
         $this -> conexion -> ejecutar($this -> productoDAO -> actualizarCantidad($this -> cantidad));
+        $this -> conexion -> cerrar();
+    }
+
+    public function actualizarEstado(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> productoDAO -> actualizarEstado());
         $this -> conexion -> cerrar();
     }
 }

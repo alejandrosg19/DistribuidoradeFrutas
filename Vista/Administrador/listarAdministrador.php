@@ -37,7 +37,7 @@ $listaAdm = $administrador->listarFiltro($filtro, $cantidad, $pagina);
 
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
                     <tr>
                         <th>idAdministrador</th>
                         <th>Nombre</th>
@@ -76,7 +76,7 @@ $listaAdm = $administrador->listarFiltro($filtro, $cantidad, $pagina);
                             echo "</select>";
                             echo "</td>";
 
-                            echo "<td> <a href='#' class='detalle' data-idadm='" . $admActual->getIdAdministrador() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idadm='" . $admActual->getIdAdministrador() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Administrador'></span> </a>";
                             echo "</tr>";
                         }
                         ?>

@@ -2,7 +2,14 @@
 $id = $_GET["idLog"];
 $log = new Log($id);
 $log -> traerInfo();
-$idActor = $log -> getIdUsuario();
+$idActor="";
+if($log->getDatos()==""){
+    $idActor = $log -> getIdUsuario();
+}else{
+    $arrayDatos = explode(":",$log->getDatos());
+    $idActor = $arrayDatos[1];
+    $log -> setActor($arrayDatos[0]);
+}
 $actor;
 if ($log->getActor() == "Cliente") {
     $actor = new Cliente($idActor);

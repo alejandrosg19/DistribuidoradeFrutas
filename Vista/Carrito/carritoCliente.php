@@ -21,14 +21,14 @@ date_default_timezone_set('America/Bogota');
                 <div class="card-body p-0">
                     <table class="table m-0">
                         <tbody>
-                            <table class="table table-hover table-striped">
+                            <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
                                 <tr class="bg-white"></tr>
                                 <?php
                                 $fila = 0;
                                 foreach ($arrayProductos  as $productoActual) {
                                     echo "<tr id='fila" . $fila . "'  class='filas' >";
                                     echo "<td><img src='" . $productoActual->getImagen() . "' width='100px'></td>";
-                                    echo "<td> Producto: " . $productoActual->getNombre() . "<br>docena de producto</br></td>";
+                                    echo "<td> Producto: " . $productoActual->getNombre() . "<br>Cantidad por: Libra</br></td>";
                                     echo "<td> <input  type='number' class='form-control cantidad' min='1' onkeydown='return false' data-idproducto='" . $productoActual->getidProducto() . "' value='" . $productoActual->getCantidad() . "'>
     
                                     </td>";

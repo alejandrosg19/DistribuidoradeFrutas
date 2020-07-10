@@ -59,11 +59,41 @@ class Administrador{
             return false;
         }    
     }
+
+    public function validarCorreo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> AdministradorDAO -> validarCorreo());
+        $this -> conexion -> cerrar();
+        if($this -> conexion -> numFilas()!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
+    public function registrarAdm(){
+        $this -> conexion -> abrir();
+        $codigoActivacion  = rand(100,1000);
+        $this -> conexion -> ejecutar($this -> AdministradorDAO -> registrarAdm(md5($codigoActivacion)));
+        $this -> conexion -> cerrar();
+    }
+
     public function traerInfo(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> AdministradorDAO -> traerInfo());
         $datos = $this -> conexion -> extraer();
+        $this -> nombre = $datos[1];
+        $this -> correo = $datos[2];
+        $this -> estado = $datos[3];
+        $this -> foto = $datos[4];
+        $this -> conexion -> cerrar();
+    }
+
+    public function traerInfoCorreo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> AdministradorDAO -> traerInfoCorreo());
+        $datos = $this -> conexion -> extraer();
+        $this -> idAdministrador = $datos[0];
         $this -> nombre = $datos[1];
         $this -> correo = $datos[2];
         $this -> estado = $datos[3];

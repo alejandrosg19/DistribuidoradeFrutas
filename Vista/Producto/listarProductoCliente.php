@@ -50,7 +50,8 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
     </div>
     <div class="row mt-3">
         <?php foreach ($listaProductos  as $productoActual) {
-            echo "<div class='sombra col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0 mt-3 text-center'>";
+            echo "<div class='col-xl-0 col-lg-0 col-md-0 col-sm-3 col-3  d-xl-none d-lg-none d-md-none d-sm-block'></div>";
+            echo "<div class='sombra col-xl-4 col-lg-4 col-md-6 col-sm-9 col-9 p-0 mt-3 text-center'>";
             echo "<div class='card border-0' style='width: 18rem;'>";
             echo "<img src='";
             echo $productoActual->getImagen() . "' class='card-img-top shadow-none';>";
@@ -175,7 +176,7 @@ $listaProductos = $producto->listarProductos($cantidad, $pagina);
 
             /*Mostrar div de mensaje "producto añadido al carrito" o "no hay producto en stock" */
             $(".divToast").css("display", "block");
-            
+
             if (res.estado == true) {
                 $("#divPtoast").addClass("alert alert-success m-0 border-0 text-center");
                 $('#pToast').text("Producto añadido al carrito");

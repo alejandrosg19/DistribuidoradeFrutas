@@ -40,7 +40,7 @@ $listaProveedor = $proveedor->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo
 
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
                     <tr>
                         <th>idProveedor</th>
                         <th>Nombre</th>
@@ -79,8 +79,8 @@ $listaProveedor = $proveedor->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo
                             echo "</select>";
                             echo "</td>";
 
-                            echo "<td> <a href='#' class='detalle' data-idproveedor='".$proveedorActual->getIdProveedor()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
-                            echo  "<a href='index.php?pid=" . base64_encode("Vista/Proveedor/editarInfo.php") . "&idProveedor=" . $proveedorActual->getIdProveedor() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Administrador'></span> </a> </td>";
+                            echo "<td> <a href='#' class='detalle' data-idproveedor='".$proveedorActual->getIdProveedor()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Proveedor'></span> </a>";
+                            echo  "<a href='index.php?pid=" . base64_encode("Vista/Proveedor/editarInfo.php") . "&idProveedor=" . $proveedorActual->getIdProveedor() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Proveedor'></span> </a> </td>";
                             echo "</tr>";
                         }
                         ?>

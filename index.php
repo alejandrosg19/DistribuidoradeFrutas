@@ -8,6 +8,7 @@ require_once "Negocio/Carrito.php";
 require_once "Negocio/Factura.php";
 require_once "Negocio/ProductoFactura.php";
 require_once "Negocio/Log.php";
+require_once "Negocio/ProveedorProducto.php";
 
 include "Vista/Main/head.php";
 

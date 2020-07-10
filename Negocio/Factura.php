@@ -103,5 +103,23 @@ class Factura
         $this -> conexion -> cerrar(); 
         return $arrayFacturas;
     }
+
+    public function cantidadPaginasFiltroCiente($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> cantidadPaginasFiltroCiente($filtro));
+        return $this -> conexion -> extraer();
+    }
+
+    public function listarFiltroCliente($filtro,$cantidad,$pagina){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> facturaDAO -> listarFiltroCliente($filtro,$cantidad,$pagina));
+        $arrayFacturas = array();
+        while(($facturaActual = $this -> conexion -> extraer())!=null){
+            $newFactura = new Factura($facturaActual[0],$facturaActual[1],$facturaActual[2],$facturaActual[3]);
+            array_push($arrayFacturas,$newFactura);
+        }
+        $this -> conexion -> cerrar(); 
+        return $arrayFacturas;
+    }
 }
 ?>

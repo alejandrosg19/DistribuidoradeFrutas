@@ -42,7 +42,15 @@ $listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
 
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Cantidad en Stock</th>
+                        <th>Precio Libra</th>
+                        <th>Estado en Bodega</th>
+                        <th>Servicios</th>
+                    </tr>
                     <?php
                     $i = ($pagina - 1) * $cantidad;
                     foreach ($listaProductos  as $productoActual) {
@@ -58,9 +66,21 @@ $listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
                             /*El siguiente codigo imprime primero la parte de la palabra hasta que encuentra el indice de $primeraPosicion, luego en negrila <mark> imprime desde el indice de primeraPosicion hasta el final de la palabra $filtro, y por ultimo imprime desde la primeraPosicion+la palabra del filtro, es decir el restante de la oracion*/
                             echo "<td>" . substr($productoActual->getNombre(), 0, $primeraPosicion) . "<strong>" . substr($productoActual->getNombre(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($productoActual->getNombre(), $primeraPosicion + strlen($filtro)) . "</td>";
                         }
-
                         echo "<td>" . $productoActual->getCantidad() . "</td>";
                         echo "<td>" . $productoActual->getPrecio() . "</td>";
+                        
+                        echo "<td>";
+                        echo "<select class='custom-select estado' data-idproducto='" . $productoActual->getidProducto() . "' style='width: 150px'>";
+                        echo ">Bloqueado</option>";
+                        echo "<option value='0'";
+                        echo ($productoActual->getEstado() == 0) ? 'selected' : '';
+                        echo ">Sin Stock</option>";
+                        echo "<option value='1'";
+                        echo ($productoActual->getEstado() == 1) ? 'selected' : '';
+                        echo ">Stock</option>";
+                        echo "</select>";
+                        echo "</td>";
+
                         echo "<td> <a href='index.php?pid=" . base64_encode("Vista/Producto/listarProductoAdm.php") . "&idProducto=" . $productoActual->getIdProducto() . "&filtro=" . $filtro . "&cantidad=" . $cantidad . "&pagina=" . $pagina . "'><span class='fas fa-info-circle' data-toggle=tooltip' data-placement='top' title='Información Producto'></span> </a>";
                         echo        "<a href='index.php?pid=" . base64_encode("Vista/Producto/editarProducto.php") . "&idProducto=" . $productoActual->getIdProducto() . "'><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Producto'></span> </a> </td>";
                         echo "</tr>";
@@ -99,6 +119,19 @@ $listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
                         </select>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL-->
+<div class='modal fade' id='vermodal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog '>
+        <div class='modal-content '>
+            <div class='alert alert-success p-3 m-0 text-center d-flex'>
+                <h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro actualizado correctamente</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
             </div>
         </div>
     </div>
@@ -183,5 +216,21 @@ $listaProductos = $producto->listarFiltro($filtro, $cantidad, $pagina);
                 $("#contenido").load(url);
             }
         });
+    });
+
+    /**Cambio Estado */
+    $(".estado").change(function() {
+        var objJSON = {
+            idProducto: $(this).data("idproducto"),
+            /*el this coge el elemento que activo el evento*/
+            estado: $(this).val(),
+        }
+
+        url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Producto/Ajax/cambioEstadoAjax.php") ?>";
+        $.post(url, objJSON, function(info) {
+            $res = JSON.parse(info);
+            $("#vermodal").modal("show");
+        })
+
     });
 </script>

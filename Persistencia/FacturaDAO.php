@@ -51,6 +51,23 @@ class FacturaDAO{
         return "select idFactura, fecha, idCliente, valor
                 from factura
                 where idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or idCliente like '".$filtro."%' or valor like '".$filtro."%'
+                order by idFactura DESC
+                limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+    }
+
+    public function cantidadPaginasFiltroCiente($filtro){
+        return "select count(idFactura) 
+                from factura
+                where (idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or valor like '".$filtro."%')
+                and idCliente = '".$this -> idCliente."'";
+    }
+
+    public function listarFiltroCliente($filtro,$cantidad,$pagina){
+        return "select idFactura, fecha, idCliente, valor
+                from factura
+                where (idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or valor like '".$filtro."%')
+                and idCliente = '".$this -> idCliente."'
+                order by idFactura DESC
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
     }
 }

@@ -12,7 +12,7 @@ $productoFactura = new ProductoFactura("", "", $factura->getIdFactura());
 $arrayfacturaProductos = $productoFactura->traerfacturaProducto();
 ?>
 <div class="row pt-3">
-    <div class="col-4">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
         <div class="border m-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-2">
                 <h4 class="m-0">Información</h4>
@@ -45,7 +45,7 @@ $arrayfacturaProductos = $productoFactura->traerfacturaProducto();
             </div>
         </div>
     </div>
-    <div class="col-8">
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
         <div class="m-2">
             <div class="card text-center border-0">
                 <div class="card-header bg-dark text-white">

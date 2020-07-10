@@ -53,6 +53,9 @@ class Log{
         return $this -> idUsuario;
     }
 
+    public function setActor($actor){
+        $this -> actor = $actor;
+    }
     public function insertarLog(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> logDAO -> insertarLog());
@@ -90,5 +93,15 @@ class Log{
         $this -> actor = $resultado[5];
         $this -> idUsuario = $resultado[6];
     }
+    public function ultimaSesion($actor,$id){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> logDAO -> ultimaSesion($actor,$id));
+        $arrayLog = array();
+        while(($resultado = $this -> conexion -> extraer())!=null){
+            $newLog = new Log("","","",$resultado[0],$resultado[1]);
+            array_push($arrayLog,$newLog);
+        }
+        $this -> conexion -> cerrar();
+        return $arrayLog;
+    }
 }
-?>

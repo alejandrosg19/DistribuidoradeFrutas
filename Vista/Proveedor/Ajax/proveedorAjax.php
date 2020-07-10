@@ -9,7 +9,7 @@ $infoLog = "actor:proveedor@idActor:".$proveedorAux->getIdProveedor()."@Estado:"
 date_default_timezone_set('America/Bogota');
 $date = date('Y-m-d');
 $hora = date('H:i:s');
-$log = new Log("", 'Cambio Estado', $infoLog, $date, $hora, "Administrador", $_SESSION["id"]);
+$log = new Log("", 'Cambio Estado Usuario', $infoLog, $date, $hora, "Administrador", $_SESSION["id"]);
 $log->insertarLog();
 
 $array = array(

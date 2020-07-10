@@ -6,7 +6,7 @@ $administrador->traerInfo();
 <div class="container-fluid" style="background-color: #FFE716;">
     <div class="container">
         <div class="row pt-4 pb-3">
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 d-lg-block d-md-block d-sm-none d-none">
                 <div class="form-group">
                     <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
                 </div>
@@ -44,25 +44,31 @@ $administrador->traerInfo();
                                     Usuarios
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Crear nuevo usuario</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/nuevoUsuario.php") ?>">Crear nuevo usuario</a>
                                     <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Cliente/listarClientes.php") ?>">Lista Clientes</a>
                                     <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Proveedor/listarProveedores.php") ?>">Lista Proveedores</a>
                                     <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Administrador/listarAdministrador.php") ?>">Lista Administradores</a>
                                 </div>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid=<?php echo base64_encode("Vista/Factura/listaFacturas.php")?>">Facturas</a>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link btn btn-outline-light border-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Registro
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Factura/listaFacturas.php") ?>">Facturas</a>
+                                    <a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("Vista/Ordenes/listaOrdenes.php") ?>">Ordenes</a>
+                                </div>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid=<?php echo base64_encode("Vista/Log/Log.php")?>">Log</a>
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid=<?php echo base64_encode("Vista/Log/Log.php") ?>">Log</a>
                             </li>
+
                         </ul>
                     </div>
                 </nav>
             </div>
             <div class="col-4 d-flex flex-row-reverse text-dark">
                 <nav class="navbar navbar-expand-lg navbar-light pb-0 ">
-                    <a class="nav-link btn btn-outline-light border-0 text-dark" href="#"><i class="fas fa-shopping-cart"></i></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown active">

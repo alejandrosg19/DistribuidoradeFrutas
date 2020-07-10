@@ -38,7 +38,7 @@ $listaFacturas = $factura->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
 
         <div class="card-body col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div id="contenido">
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-responsive-md table-hover table-striped">
                     <tr>
                         <th>idFactura</th>
                         <th>Fecha-Hora</th>

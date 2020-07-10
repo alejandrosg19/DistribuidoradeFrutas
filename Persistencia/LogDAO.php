@@ -40,5 +40,12 @@ class LogDAO{
                 where idLog = '".$this -> idLog."'";
     }
 
+    public function ultimaSesion($actor,$id){
+        return "select fecha, hora
+                from log
+                where actor = '".$actor."' and idUsuario = '".$id."'";
+                
+    }
+
 }
 ?>

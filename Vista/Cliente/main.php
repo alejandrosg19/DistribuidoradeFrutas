@@ -10,7 +10,7 @@ $span = count($carrito -> getArrayProductos());
 <div class="container-fluid" style="background-color: #FFE716;">
     <div class="container">
         <div class="row pt-4 pb-3">
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 d-lg-block d-md-block d-sm-none d-none">
                 <div class="form-group">
                     <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
                 </div>
@@ -39,7 +39,7 @@ $span = count($carrito -> getArrayProductos());
                                 <a class="nav-link btn btn-outline-light border-0" href="index.php?pid= <?php echo base64_encode("Vista/Producto/listarProductoCliente.php") ?>">Frutas</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid= <?php echo base64_encode("")?>">Log</a>
+                                <a class="nav-link btn btn-outline-light border-0" href="index.php?pid= <?php echo base64_encode("Vista/Factura/listarFacturasCliente.php")?>">Mis Compras</a>
                             </li>
                         </ul>
                     </div>

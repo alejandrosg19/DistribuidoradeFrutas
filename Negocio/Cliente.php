@@ -66,7 +66,6 @@ class Cliente{
     public function registrarCliente(){
         $this -> conexion -> abrir();
         $codigoActivacion  = rand(100,1000);
-        echo $this -> clienteDAO -> registrarCliente(md5($codigoActivacion));
         $this -> conexion -> ejecutar($this -> clienteDAO -> registrarCliente(md5($codigoActivacion)));
         $this -> conexion -> cerrar();
     }
