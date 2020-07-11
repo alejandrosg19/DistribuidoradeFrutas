@@ -24,7 +24,8 @@ if ($info1[1] == "Cliente") {
     $title="Administrador";
 }
 $band = false;
-if ($actor->getNombre() == $info1[1] and $actor->getCorreo() == $info2[1]) {
+if ($actor->getNombre() == $info2[1] and $actor->getCorreo() == $info3[1]) {
+    echo "eyyy";
     $band = true;
 }
 
@@ -42,7 +43,7 @@ if ($actor->getNombre() == $info1[1] and $actor->getCorreo() == $info2[1]) {
                 <div style="display: <?php echo($band==true?"block":"none !important")?>" class="alert alert-warning" style="min-height: 80px;">
                     <div class="text-center" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
                         <div>
-                            <p  class="m-0">El usuario solo modifico la foto de perfil</p>
+                            <p  class="m-0">Solo se modifico la foto de perfil</p>
                         </div>
                     </div>
                 </div>

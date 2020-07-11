@@ -4,7 +4,7 @@ $cliente->traerInfo();
 $log = new Log();
 $fecha = $log->ultimaSesion("Cliente", $_SESSION["id"]);
 $info = "eyyy";
-if (count($fecha) == 1) {
+if (count($fecha) == 1 || count($fecha)==0 ) {
     $info = $fecha[0]->getFecha() . " " . $fecha[0]->getHora();
 } else {
     $valor = count($fecha) - 2;
@@ -26,7 +26,7 @@ if (count($fecha) == 1) {
                             <div class="card-body p-0">
                                 <div class="row p-3">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                                        <img src="<?php echo $cliente->getFoto() ?>" width="50%" class="img-thumbnail">
+                                    <img src="<?php echo ($cliente->getFoto() != "" ? $cliente->getFoto() : "https://upload.wikimedia.org/wikipedia/commons/e/e4/Elliot_Grieveson.png") ?>" width="50%" class="img-thumbnail">
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pt-4 px-5">
                                         <table class="table">

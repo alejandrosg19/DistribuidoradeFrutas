@@ -51,8 +51,8 @@ $arrayfacturaProductos = $productoFactura->traerfacturaProducto();
                 <div class="card-header bg-dark text-white">
                     Productos
                 </div>
-                <div class="card-body">
-                    <table class="table table-borderless">
+                <div class="table table-responsive-sm table-responsive-md   ">
+                    <table class="table table-responsive-sm table-responsive-md table-borderless">
                         <thead class="border-bottom">
                             <tr>
                                 <th>idProducto</th>

@@ -49,7 +49,7 @@ $arrayfacturaProductos = $productoFactura->traerfacturaProducto();
                     Productos
                 </div>
                 <div class="card-body">
-                    <div class="table col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="table table-responsive-sm table-responsive-md">
                         <table class="table table-responsive-sm table-responsive-md table-borderless">
                             <thead class="border-bottom">
                                 <tr>
