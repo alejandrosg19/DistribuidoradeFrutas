@@ -47,5 +47,18 @@ class LogDAO{
                 
     }
 
+    public function cantidadPaginasFiltro($filtro){
+        return "select count(idLog) 
+                from log
+                where idLog like '%".$filtro."%' or accion like '".$filtro."%' or fecha like '%".$filtro."%' or hora like '%".$filtro."%' or actor like '".$filtro."%'";
+    }
+
+    public function listarFiltro($filtro,$cantidad,$pagina){
+        return "select idLog, accion, datos, fecha, hora, actor, idUsuario
+                from log
+                where accion like '".$filtro."%' or fecha like '%".$filtro."%' or hora like '%".$filtro."%' or actor like '".$filtro."%'
+                order by idLog DESC
+                limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
+    }
+
 }
-?>
