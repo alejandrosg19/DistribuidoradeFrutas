@@ -149,27 +149,6 @@ CREATE TABLE `log` (
 -- Dumping data for table `log`
 --
 
-INSERT INTO `log` (`idLog`, `accion`, `datos`, `fecha`, `hora`, `actor`, `idUsuario`) VALUES
-(342, 'Inicio de Sesion', '', '2020-07-11', '13:12:00', 'Cliente', 4),
-(343, 'Compra', 'factura:118', '2020-07-11', '13:12:26', 'Cliente', 4),
-(344, 'Inicio de Sesion', '', '2020-07-11', '13:17:46', 'Administrador', 3),
-(345, 'Inicio de Sesion', '', '2020-07-11', '13:19:51', 'Cliente', 4),
-(346, 'Actualizar Información', 'Actor:Cliente-Nombre:Santiago Alejandro-Correo:123@123.com-id:4', '2020-07-11', '13:21:07', 'Cliente', 4),
-(347, 'Inicio de Sesion', '', '2020-07-11', '13:21:24', 'Cliente', 4),
-(348, 'Inicio de Sesion', '', '2020-07-11', '13:21:54', 'Administrador', 3),
-(349, 'Editar Cliente', 'Actor:Cliente-Nombre:Santiago-Correo:123@123.com-id:4', '2020-07-11', '13:22:38', 'Administrador', 3),
-(350, 'Editar Cliente', 'Actor:Cliente-Nombre:Diego Pardo-Correo:diego@hotmail.com-id:42', '2020-07-11', '13:23:09', 'Administrador', 3),
-(351, 'Actualizar Información', 'Actor:Administrador-Nombre:Santiago Alejo-Correo:alejandro@hotmail.com-id:3', '2020-07-11', '13:29:50', 'Administrador', 3),
-(352, 'Inicio de Sesion', '', '2020-07-11', '13:30:08', 'Cliente', 4),
-(353, 'Actualizar Información', 'Actor:Cliente-Nombre:Santiago Andres-Correo:123@123.com-id:4', '2020-07-11', '13:30:18', 'Cliente', 4),
-(354, 'Crear Producto', 'id:41', '2020-07-11', '14:07:56', 'Administrador', 3),
-(355, 'Crear Producto', 'id:42', '2020-07-11', '14:17:43', 'Administrador', 3),
-(356, 'Crear Producto', 'id:43', '2020-07-11', '14:18:52', 'Administrador', 3),
-(357, 'Crear Producto', 'id:44', '2020-07-11', '14:24:13', 'Administrador', 3),
-(358, 'Crear Producto', 'id:45', '2020-07-11', '14:26:23', 'Administrador', 3),
-(359, 'Inicio de Sesion', '', '2020-07-12', '12:24:46', 'Cliente', 46),
-(360, 'Inicio de Sesion', '', '2020-07-12', '12:25:05', 'Cliente', 46),
-(361, 'Inicio de Sesion', '', '2020-07-12', '12:28:36', 'Administrador', 17);
 
 -- --------------------------------------------------------
 
