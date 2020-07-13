@@ -47,7 +47,6 @@
       <div class="mt-xl-5 mt-lg-5 mt-md-2">
         <img src="Vista/Img/6.png" alt="">
       </div>
-
     </div>
   </div>
 </div>

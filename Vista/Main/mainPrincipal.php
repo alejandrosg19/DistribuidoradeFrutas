@@ -9,7 +9,7 @@ if (isset($_GET["validacion"])) {
 <div class="container-fluid" style="background-color: #FFE716;">
   <div class="container">
     <div class="row pt-4">
-      <div class=" col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-2 order-xs-2 order-2">
+      <div class=" col-xl-2 col-lg-2 col-md-2 col-sm-12 order-xl-1 order-lg-1 order-md-1 d-lg-block d-md-block d-sm-none d-none">
         <div class="form-group">
           <img src="Vista/Img/logistica.png" alt="" style="width: 80px;">
         </div>
@@ -92,40 +92,6 @@ if (isset($_GET["validacion"])) {
             </form>
           </div>
         </div>
-      </div>
-    </div>
-    <!---NABVAR-->
-    <div class="row">
-      <div class="col-8 p-0 pt-2">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto ">
-              <li class="nav-item active">
-                <a class="nav-link btn btn-outline-light border-0" href="#">
-                  <h6><strong>TODAS LAS FRUTAS</strong></h6>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link btn btn-outline-light border-0" href="#">
-                  <h6><strong>NEUTRAS</strong></h6>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link btn btn-outline-light border-0" href="#">
-                  <h6><strong>DULCES</strong></h6>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-      <div class="col-4 d-flex flex-row-reverse">
-        <nav class="navbar navbar-expand-lg navbar-light pb-0 ">
-          <a class="nav-link btn btn-outline-light text-dark border-0" href="#"><i class="fas fa-shopping-cart"></i></a>
-        </nav>
       </div>
     </div>
   </div>
