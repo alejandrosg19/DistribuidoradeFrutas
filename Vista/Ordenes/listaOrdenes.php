@@ -30,9 +30,7 @@ $listaOrdenes = $orden->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo metod
         </div>
         <div class="d-flex text-center m-2 shadow-sm p-3 e rounded">
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
-                </form>
+                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
             </div>
         </div>
 
@@ -89,7 +87,7 @@ $listaOrdenes = $orden->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo metod
                             } else {
                                 echo "<td>" . substr($ordenActual->getFecha(), 0, $primeraPosicion) . "<strong>" . substr($ordenActual->getFecha(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($ordenActual->getFecha(), $primeraPosicion + strlen($filtro)) . "</td>";
                             }
-                            echo "<td> <a href='#' class='detalle' data-idorden='".$ordenActual->getIdProveedorProducto()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle='tooltip ' data-placement='top' title='Información Orden'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idorden='" . $ordenActual->getIdProveedorProducto() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle='tooltip ' data-placement='top' title='Información Orden'></span> </a>";
                             echo "</tr>";
                         }
                         ?>
@@ -183,7 +181,7 @@ $listaOrdenes = $orden->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo metod
     $(function() {
         $(".detalle").on("click", function() {
             var id = $(this).data("idorden");
-            console.log("eyyyy"+id);
+            console.log("eyyyy" + id);
             var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Ordenes/Ajax/detalleOrdenAjax.php") ?>&idOrden=" + id;
             $("#mostrar").load(url);
         })

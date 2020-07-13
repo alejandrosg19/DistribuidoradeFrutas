@@ -29,9 +29,7 @@ $listaAdm = $administrador->listarFiltro($filtro, $cantidad, $pagina);
         </div>
         <div class="d-flex text-center m-2 shadow-sm p-3 e rounded">
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
-                </form>
+                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
             </div>
         </div>
 

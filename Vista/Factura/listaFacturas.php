@@ -30,9 +30,7 @@ $listaFacturas = $factura->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
         </div>
         <div class="d-flex text-center m-2 shadow-sm p-3 e rounded">
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
-                </form>
+                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
             </div>
         </div>
 
@@ -84,7 +82,7 @@ $listaFacturas = $factura->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                             } else {
                                 echo "<td>" . substr($facturaActual->getValor(), 0, $primeraPosicion) . "<strong>" . substr($facturaActual->getValor(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($facturaActual->getValor(), $primeraPosicion + strlen($filtro)) . "</td>";
                             }
-                            echo "<td> <a href='#' class='detalle' data-idfactura='".$facturaActual->getIdFactura()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idfactura='" . $facturaActual->getIdFactura() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
                             echo "</tr>";
                         }
                         ?>
@@ -178,7 +176,7 @@ $listaFacturas = $factura->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
     $(function() {
         $(".detalle").on("click", function() {
             var id = $(this).data("idfactura");
-            console.log("eyyyy"+id);
+            console.log("eyyyy" + id);
             var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Factura/Ajax/detalleFacturaAjax.php") ?>&idFactura=" + id;
             $("#mostrar").load(url);
         })
