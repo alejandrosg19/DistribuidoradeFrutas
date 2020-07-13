@@ -104,9 +104,9 @@ class Factura
         return $arrayFacturas;
     }
 
-    public function cantidadPaginasFiltroCiente($filtro){
+    public function cantidadPaginasFiltroCliente($filtro){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> facturaDAO -> cantidadPaginasFiltroCiente($filtro));
+        $this -> conexion -> ejecutar($this -> facturaDAO -> cantidadPaginasFiltroCliente($filtro));
         return $this -> conexion -> extraer();
     }
 

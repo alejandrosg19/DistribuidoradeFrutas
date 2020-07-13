@@ -55,7 +55,7 @@ class FacturaDAO{
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
     }
 
-    public function cantidadPaginasFiltroCiente($filtro){
+    public function cantidadPaginasFiltroCliente($filtro){
         return "select count(idFactura) 
                 from factura
                 where (idFactura like '%".$filtro."%' or fecha like '%".$filtro."%' or valor like '".$filtro."%')

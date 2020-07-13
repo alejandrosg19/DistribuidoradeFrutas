@@ -10,7 +10,7 @@ $pagina = 1;
 if (isset($_GET["pagina"])) {
     $pagina = $_GET["pagina"];
 }
-$cant = $factura->cantidadPaginasFiltroCiente($filtro); /* se creo un nuevo metodo que trae la cantidad de paginas segun el filtro*/
+$cant = $factura->cantidadPaginasFiltroCliente($filtro); /* se creo un nuevo metodo que trae la cantidad de paginas segun el filtro*/
 $cantPagina = intval($cant[0] / $cantidad);
 if (($cant[0] % $cantidad) != 0) {
     $cantPagina++;
