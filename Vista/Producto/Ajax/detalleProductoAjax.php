@@ -21,7 +21,7 @@ if(isset($_GET["Proveedor"])){
                     <p><?php echo($info==""?"Libra de ".$producto->getNombre()." por un precio de $".$producto->getPrecio():$info)?></p>
                     <div class="form-group">
                         <label for="cantidadProducto">Cantidad</label>
-                        <input type="number" class="form-control cantidadProducto" onkeydown="return false" min="1" value="1" data-idproducto="<?php echo $producto->getidProducto()?>" data-nombre="<?php echo $producto->getNombre()?>" data-precio="<?php echo $producto->getPrecio()?>" data-imagen="<?php echo $producto->getImagen()?>">
+                        <input type="number" class="form-control cantidadProducto" onkeydown="return false" min="1" max="<?php echo $producto -> getCantidad()?>" value="1" data-idproducto="<?php echo $producto->getidProducto()?>" data-nombre="<?php echo $producto->getNombre()?>" data-precio="<?php echo $producto->getPrecio()?>" data-imagen="<?php echo $producto->getImagen()?>">
                     </div>
                 </form>
             </div>

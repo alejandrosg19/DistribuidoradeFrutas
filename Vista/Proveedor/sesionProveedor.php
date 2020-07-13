@@ -4,9 +4,9 @@ $proveedor->traerInfo();
 $log = new Log();
 $fecha = $log->ultimaSesion("Proveedor", $_SESSION["id"]);
 $info ="eyyy";
-if (count($fecha) == 1  || count($fecha)==0 ) {
+if (count($fecha) == 1) {
     $info = $fecha[0]->getFecha() . " " . $fecha[0]->getHora();
-} else {
+} else if(count($fecha) > 1){
     $valor = count($fecha) - 2;
     $info = $fecha[$valor]->getFecha() . " " . $fecha[$valor]->getHora();
 }
@@ -71,7 +71,7 @@ if (count($fecha) == 1  || count($fecha)==0 ) {
                 </div>
             </div>
             <div class="card-footer text-muted">
-                Ultima Sesion: <?php echo $info ?>
+                <?php echo ($info!=""?"Ultima Sesion: ".$info:"") ?>
             </div>
         </div>
     </div>
