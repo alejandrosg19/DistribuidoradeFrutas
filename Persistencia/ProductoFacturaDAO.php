@@ -20,8 +20,8 @@ class ProductoFacturaDAO
 
     
     public function crearProductoFactura(){
-        return "insert into facturaproducto 
-                values('".$this -> idFacturaProducto."','".$this -> idProducto."','".$this -> idFactura."','".$this -> cantidad."','".$this -> precio."')";
+        return "insert into facturaproducto (idProducto,idFactura,cantidad,precio)
+                values('".$this -> idProducto."','".$this -> idFactura."','".$this -> cantidad."','".$this -> precio."')";
     }
 
     public function traerfacturaProducto(){
