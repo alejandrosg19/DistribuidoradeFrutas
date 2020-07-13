@@ -79,7 +79,7 @@ class ProductoDAO{
 
     public function listarProductos($cantidad, $pagina){
         return "select idProducto, nombre, cantidad, precio, imagen, estado 
-                from Producto
+                from producto
                 limit " . (($pagina-1) * $cantidad) . ", " . $cantidad;
     }
 

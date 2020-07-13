@@ -30,7 +30,7 @@ class FacturaDAO{
     }
 
     public function crearFactura(){
-        return "insert into factura values('".$this -> idFactura."','".$this -> fecha."','".$this -> idCliente."','".$this -> valor."')";
+        return "insert into factura (fecha,idCliente,valor) values('".$this -> fecha."','".$this -> idCliente."','".$this -> valor."')";
     }
 
     public function facturas(){

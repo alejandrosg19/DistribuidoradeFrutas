@@ -69,6 +69,7 @@ class Log
     public function insertarLog()
     {
         $this->conexion->abrir();
+        echo $this->logDAO->insertarLog();
         $this->conexion->ejecutar($this->logDAO->insertarLog());
         $this->conexion->cerrar();
     }

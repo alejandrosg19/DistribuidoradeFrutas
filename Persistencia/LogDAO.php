@@ -20,8 +20,8 @@ class LogDAO{
     }
 
     public function insertarLog(){
-        return "insert into log (idLog,accion,datos,fecha,hora,actor,idUsuario) 
-            values('','".$this -> accion."','".$this -> datos."','".$this -> fecha."','".$this -> hora."','".$this -> actor."','".$this -> idUsuario."')";
+        return "insert into log (accion,datos,fecha,hora,actor,idUsuario) 
+            values('".$this -> accion."','".$this -> datos."','".$this -> fecha."','".$this -> hora."','".$this -> actor."','".$this -> idUsuario."')";
     }
 
     public function cantidadPaginas(){

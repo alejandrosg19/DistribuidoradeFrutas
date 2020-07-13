@@ -33,9 +33,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
         </div>
         <div class="d-flex text-center m-2 shadow-sm p-3 e rounded">
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
-                </form>
+                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" data-cantidad="<?php echo $cantidad ?>" value="<?php echo ($filtro != null ? $filtro : "") ?>">
             </div>
         </div>
 
@@ -80,7 +78,7 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                             echo "</select>";
                             echo "</td>";
 
-                            echo "<td> <a href='#' class='detalle' data-idcliente='".$clienteActual->getidCliente()."' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Cliente'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idcliente='" . $clienteActual->getidCliente() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Cliente'></span> </a>";
                             echo  "<a href='index.php?pid=" . base64_encode("Vista/Cliente/editarInfo.php") . "&idCliente=" . $clienteActual->getidCliente() . "' class=''><span class='fas fa-edit' data-toggle=tooltip' data-placement='top' title='Editar Cliente'></span> </a> </td>";
                             echo "</tr>";
                         }
@@ -185,11 +183,11 @@ $listaClientes = $cliente->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
     });
 
     /**Mostrar Info */
-    $(function(){
-        $(".detalle").on("click",function(){
+    $(function() {
+        $(".detalle").on("click", function() {
             var id = $(this).data("idcliente");
-            var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Ajax/infoUsuarios.php")?>&idCliente="+id+"&actor=2";
-            $("#mostrar").load(url);            
+            var url = "indexAjax.php?pid=<?php echo base64_encode("Vista/Ajax/infoUsuarios.php") ?>&idCliente=" + id + "&actor=2";
+            $("#mostrar").load(url);
         })
     })
 </script>
