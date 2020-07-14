@@ -24,7 +24,7 @@
 
         public function registrarCliente($codigoAtivacion){
             return "insert into cliente (nombre,correo,clave,estado,codigoActivacion)
-            values(".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
+            values('".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
         }
 
         public function autenticar(){
