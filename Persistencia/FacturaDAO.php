@@ -6,7 +6,7 @@ class FacturaDAO{
     private $valor;
 
 
-    public function FacturaDAO($idFactura = "", $fecha = "", $idCliente = "", $valor = "")
+    public function FacturaDAO($idFactura = "", $fecha = "", $idCliente = "", $valor = 0)
     {
         $this->idFactura = $idFactura;
         $this->fecha = $fecha;

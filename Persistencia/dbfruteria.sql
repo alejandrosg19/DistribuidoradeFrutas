@@ -1,11 +1,9 @@
-create database dbfruteria;
-use dbfruteria;
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 07:29 PM
+-- Generation Time: Jul 14, 2020 at 03:00 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -67,8 +65,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nombre`, `correo`, `clave`, `estado`, `codigoActivacion`, `foto`) VALUES
-(4, 'Santiago Lopez', '123@123.com', '202cb962ac59075b964b07152d234b70', 1, 2591834, 'Vista/Img/Users/1594491758.png'),
-(42, 'Diego Pardo', 'diego@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 6, 'Vista/Img/Users/1594491789.png'),
+(4, 'Santiago Pardo', '123@123.com', '202cb962ac59075b964b07152d234b70', 1, 2591834, 'Vista/Img/Users/1594491758.png'),
+(42, 'Diego Pardo', 'diego@hotmail.com', '202cb962ac59075b964b07152d234b70', -1, 6, 'Vista/Img/Users/1594491789.png'),
 (43, 'Kevin Lopez', 'kevin@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (44, 'Sebastian', 'Sebastian@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (45, 'Andres', 'Andres@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
@@ -84,7 +82,8 @@ INSERT INTO `cliente` (`idCliente`, `nombre`, `correo`, `clave`, `estado`, `codi
 (56, 'Angela', 'Angela@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (57, 'Steven', 'Steven@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (58, 'Miguel', 'Miguel@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
-(59, 'Laura', 'Laura@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, '');
+(59, 'Laura', 'Laura@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
+(60, 'prueba', 'pruebaeyyy@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 2849, NULL);
 
 -- --------------------------------------------------------
 
@@ -99,13 +98,6 @@ CREATE TABLE `factura` (
   `valor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `factura`
---
-
-INSERT INTO `factura` (`idFactura`, `fecha`, `idCliente`, `valor`) VALUES
-(118, '2020-07-11 13:12:26', 4, 146000);
-
 -- --------------------------------------------------------
 
 --
@@ -119,15 +111,6 @@ CREATE TABLE `facturaproducto` (
   `cantidad` int(11) NOT NULL,
   `precio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `facturaproducto`
---
-
-INSERT INTO `facturaproducto` (`idfacturaProducto`, `idProducto`, `idFactura`, `cantidad`, `precio`) VALUES
-(116, 1, 118, 2, 12000),
-(117, 2, 118, 4, 13000),
-(118, 3, 118, 5, 14000);
 
 -- --------------------------------------------------------
 
@@ -144,11 +127,6 @@ CREATE TABLE `log` (
   `actor` varchar(50) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `log`
---
-
 
 -- --------------------------------------------------------
 
@@ -170,18 +148,18 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `imagen`, `estado`) VALUES
-(1, 'Naranja', 98, 12000, 'Vista/Img/imgProductos/naranja.jpg', 1),
-(2, 'Fresas', 96, 13000, 'Vista/Img/imgProductos/fresa.jpg', 1),
-(3, 'Manzanas', 95, 14000, 'Vista/Img/imgProductos/manzana.jpg', 1),
-(4, 'Peras', 100, 15000, 'Vista/Img/imgProductos/pera.jpg', 1),
-(5, 'Bananos', 100, 16000, 'Vista/Img/imgProductos/banano.jpg', 1),
-(6, 'Mandarina', 100, 17000, 'Vista/Img/imgProductos/mandarina.jpg', 1),
-(8, 'Mango', 100, 15000, 'Vista/Img/imgProductos/mango.jpg', 1),
-(41, 'Moras', 100, 7000, 'Vista/Img/imgProductos/1594494476.jpeg', 1),
+(1, 'Naranja', 100, 3000, 'Vista/Img/imgProductos/naranja.jpg', 1),
+(2, 'Fresas', 100, 3000, 'Vista/Img/imgProductos/fresa.jpg', 1),
+(3, 'Manzanas', 100, 2400, 'Vista/Img/imgProductos/manzana.jpg', 1),
+(4, 'Peras', 100, 3400, 'Vista/Img/imgProductos/pera.jpg', 1),
+(5, 'Bananos', 100, 1400, 'Vista/Img/imgProductos/banano.jpg', 0),
+(6, 'Mandarina', 100, 2600, 'Vista/Img/imgProductos/mandarina.jpg', 0),
+(8, 'Mango', 100, 3000, 'Vista/Img/imgProductos/mango.jpg', 0),
+(41, 'Moras', 100, 5500, 'Vista/Img/imgProductos/1594494476.jpeg', 0),
 (42, 'Cerezas', 100, 9000, 'Vista/Img/imgProductos/1594495063.jpeg', 1),
 (43, 'Duraznos', 100, 4500, 'Vista/Img/imgProductos/1594495131.jpeg', 1),
 (44, 'Piñas', 100, 6000, 'Vista/Img/imgProductos/1594495453.jpeg', 1),
-(45, 'Uvas', 100, 2500, 'Vista/Img/imgProductos/1594495583.jpeg', 1);
+(45, 'Uvas', 100, 2500, 'Vista/Img/imgProductos/1594495583.jpeg', 0);
 
 -- --------------------------------------------------------
 
@@ -296,25 +274,25 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `facturaproducto`
 --
 ALTER TABLE `facturaproducto`
-  MODIFY `idfacturaProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `idfacturaProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `idLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
+  MODIFY `idLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=422;
 
 --
 -- AUTO_INCREMENT for table `producto`

@@ -11,7 +11,7 @@ class Factura
     private $conexion;
     private $facturaDAO;
 
-    public function Factura($idFactura = "", $fecha = "", $idCliente = "", $valor = "")
+    public function Factura($idFactura = "", $fecha = "", $idCliente = "", $valor = 0)
     {
         $this->idFactura = $idFactura;
         $this->fecha = $fecha;
