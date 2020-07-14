@@ -1,3 +1,5 @@
+create database dbfruteria;
+use dbfruteria;
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/

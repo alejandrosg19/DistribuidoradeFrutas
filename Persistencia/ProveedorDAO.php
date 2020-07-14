@@ -24,8 +24,8 @@ class ProveedorDAO{
     }
     
     public function registrarProveedor($codigoActivacion){
-        return "insert into proveedor (idProveedor,nombre,correo,clave,estado,codigoActivacion) 
-                values('','".$this -> nombre ."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoActivacion)."')";
+        return "insert into proveedor (nombre,correo,clave,estado,codigoActivacion) 
+                values(".$this -> nombre ."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoActivacion)."')";
     }
 
     public function autenticar(){

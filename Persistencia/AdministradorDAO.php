@@ -33,8 +33,8 @@
         }
 
         public function registrarAdm($codigoAtivacion){
-            return "insert into administrador (idAdministrador,nombre,correo,clave,estado,codigoActivacion)
-            values('','".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
+            return "insert into administrador (nombre,correo,clave,estado,codigoActivacion)
+            values(".$this -> nombre."','".$this -> correo."','".md5($this -> clave)."','0','".md5($codigoAtivacion)."')";
         }
 
         public function traerInfo(){

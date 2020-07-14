@@ -25,7 +25,6 @@ if ($info1[1] == "Cliente") {
 }
 $band = false;
 if ($actor->getNombre() == $info2[1] and $actor->getCorreo() == $info3[1]) {
-    echo "eyyy";
     $band = true;
 }
 
