@@ -121,7 +121,7 @@ $listaAdm = $administrador->listarFiltro($filtro, $cantidad, $pagina);
     <div class='modal-dialog '>
         <div class='modal-content '>
             <div class='alert alert-success p-3 m-0 text-center d-flex'>
-                <h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro aactualizado correctamente</h5>
+                <h5 class='modal-title flex-grow-1' id='exampleModalLabel'>Registro actualizado correctamente</h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>

@@ -5,7 +5,7 @@ $proveedor = new Proveedor($_POST["idProveedor"],"","","",$_POST["estado"]);
 $proveedor -> actualizarEstado();
 
 /**Log */
-$infoLog = "actor:proveedor@idActor:".$proveedorAux->getIdProveedor()."@Estado:" . $proveedorAux->getEstado();
+$infoLog = "actor:proveedor@idActor:".$proveedorAux->getIdProveedor()."@EstadoA:" . $proveedorAux->getEstado()."@EstadoN:" . $proveedor->getEstado();
 date_default_timezone_set('America/Bogota');
 $date = date('Y-m-d');
 $hora = date('H:i:s');

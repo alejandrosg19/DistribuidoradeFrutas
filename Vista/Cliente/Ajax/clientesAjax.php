@@ -5,7 +5,7 @@ $cliente = new Cliente($_POST["idCliente"],"","","",$_POST["estado"]);
 $cliente -> actualizarEstado();
 
 /**Log */
-$infoLog = "actor:cliente@idActor:".$clienteAux->getidCliente()."@Estado:" . $clienteAux->getEstado();
+$infoLog = "actor:cliente@idActor:".$clienteAux->getidCliente()."@EstadoA:" . $clienteAux->getEstado()."@EstadoN:" . $cliente->getEstado();
 date_default_timezone_set('America/Bogota');
 $date = date('Y-m-d');
 $hora = date('H:i:s');

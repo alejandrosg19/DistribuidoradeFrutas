@@ -5,7 +5,7 @@ $administrador = new Administrador($_POST["idAdm"], "", "", "", $_POST["estado"]
 $administrador->actualizarEstado();
 
 /**Log */
-$infoLog = "actor:administrador@idActor:".$admAux->getIdAdministrador()."@Estado:" . $admAux->getEstado();
+$infoLog = "actor:administrador@idActor:".$admAux->getIdAdministrador()."@EstadoA:" . $admAux->getEstado()."@EstadoN:" . $administrador->getEstado();
 date_default_timezone_set('America/Bogota');
 $date = date('Y-m-d');
 $hora = date('H:i:s');

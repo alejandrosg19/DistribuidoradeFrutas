@@ -6,6 +6,7 @@ $arrayDatos = explode("@", $log->getDatos());
 $info1 = explode(":", $arrayDatos[0]);
 $info2 = explode(":", $arrayDatos[1]);
 $info3 = explode(":", $arrayDatos[2]);
+$info4 = explode(":", $arrayDatos[3]);
 $idActor = $info2[1];
 $actor;
 
@@ -58,7 +59,7 @@ if ($info1[1] == "cliente") {
                                 <h5 class="border-bottom p-1">Nuevo Estado</h5>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="m-0">Estado: </p>
-                                    <p class="m-0"><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo ($actor->getEstado()==-1?"Bloqueado":($actor->getEstado()==0?"Deshabilitado":"Habilitado"))?></small></p>
+                                    <p class="m-0"><small id="emailHelp" class="form-text text-muted mt-0 "><?php echo ($info4[1]==-1?"Bloqueado":($info4[1]==0?"Deshabilitado":"Habilitado"))?></small></p>
                                 </div>
                             </div>
                         </div>
