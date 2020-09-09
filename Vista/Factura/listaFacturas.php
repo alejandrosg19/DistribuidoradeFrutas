@@ -82,7 +82,7 @@ $listaFacturas = $factura->listarFiltro($filtro, $cantidad, $pagina); /*Nuevo me
                             } else {
                                 echo "<td>" . substr($facturaActual->getValor(), 0, $primeraPosicion) . "<strong>" . substr($facturaActual->getValor(), $primeraPosicion, strlen($filtro)) . "</strong>" . substr($facturaActual->getValor(), $primeraPosicion + strlen($filtro)) . "</td>";
                             }
-                            echo "<td> <a href='#' class='detalle' data-idfactura='" . $facturaActual->getIdFactura() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Producto'></span> </a>";
+                            echo "<td> <a href='#' class='detalle' data-idfactura='" . $facturaActual->getIdFactura() . "' data-toggle='modal' data-target='#exampleModal'><span class='fas fa-info-circle' data-toggle=tooltip ' data-placement='top' title='Información Factura'></span> </a>";
                             echo "</tr>";
                         }
                         ?>
