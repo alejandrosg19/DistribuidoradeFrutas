@@ -5,7 +5,7 @@ use dbfruteria;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2020 at 03:00 AM
+-- Generation Time: Sep 13, 2020 at 03:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -44,7 +44,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`idAdministrador`, `nombre`, `correo`, `clave`, `estado`, `codigoActivacion`, `foto`) VALUES
-(17, 'Santiago Alejandro', 'alejandro@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, 'Vista/Img/Users/1594317754.jpg\r\n');
+(17, 'Santiago Alejandro', 'alejandro@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -67,13 +67,10 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nombre`, `correo`, `clave`, `estado`, `codigoActivacion`, `foto`) VALUES
-(4, 'Santiago Pardo', '123@123.com', '202cb962ac59075b964b07152d234b70', 1, 2591834, 'Vista/Img/Users/1594491758.png'),
-(42, 'Diego Pardo', 'diego@hotmail.com', '202cb962ac59075b964b07152d234b70', -1, 6, 'Vista/Img/Users/1594491789.png'),
 (43, 'Kevin Lopez', 'kevin@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (44, 'Sebastian', 'Sebastian@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (45, 'Andres', 'Andres@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (47, 'Ramiro', 'Ramiro@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
-(48, 'Jose', 'Jose@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (49, 'Karol', 'Karol@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (50, 'Vanesa', 'Vanesa@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (51, 'Karen', 'Karen@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
@@ -84,8 +81,7 @@ INSERT INTO `cliente` (`idCliente`, `nombre`, `correo`, `clave`, `estado`, `codi
 (56, 'Angela', 'Angela@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (57, 'Steven', 'Steven@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
 (58, 'Miguel', 'Miguel@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
-(59, 'Laura', 'Laura@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, ''),
-(60, 'prueba', 'pruebaeyyy@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 2849, NULL);
+(59, 'Laura', 'Laura@hotmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -100,6 +96,13 @@ CREATE TABLE `factura` (
   `valor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `factura`
+--
+
+INSERT INTO `factura` (`idFactura`, `fecha`, `idCliente`, `valor`) VALUES
+(140, '2020-09-12 20:14:17', 43, 42000);
+
 -- --------------------------------------------------------
 
 --
@@ -113,6 +116,15 @@ CREATE TABLE `facturaproducto` (
   `cantidad` int(11) NOT NULL,
   `precio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `facturaproducto`
+--
+
+INSERT INTO `facturaproducto` (`idfacturaProducto`, `idProducto`, `idFactura`, `cantidad`, `precio`) VALUES
+(154, 1, 140, 5, 3000),
+(155, 2, 140, 5, 3000),
+(156, 3, 140, 5, 2400);
 
 -- --------------------------------------------------------
 
@@ -129,6 +141,20 @@ CREATE TABLE `log` (
   `actor` varchar(50) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`idLog`, `accion`, `datos`, `fecha`, `hora`, `actor`, `idUsuario`) VALUES
+(535, 'Inicio de Sesion', '', '2020-09-12', '20:10:43', 'Cliente', 48),
+(536, 'Inicio de Sesion', '', '2020-09-12', '20:13:04', 'Proveedor', 33),
+(537, 'Proveer Producto', 'id:5-cantidad:100', '2020-09-12', '20:13:19', 'Proveedor', 33),
+(538, 'Inicio de Sesion', '', '2020-09-12', '20:13:51', 'Cliente', 43),
+(539, 'Compra', 'factura:140', '2020-09-12', '20:14:17', 'Cliente', 43),
+(540, 'Inicio de Sesion', '', '2020-09-12', '20:18:51', 'Administrador', 17),
+(541, 'Inicio de Sesion', '', '2020-09-12', '20:19:57', 'Proveedor', 33),
+(542, 'Inicio de Sesion', '', '2020-09-12', '20:20:43', 'Cliente', 43);
 
 -- --------------------------------------------------------
 
@@ -150,11 +176,11 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `imagen`, `estado`) VALUES
-(1, 'Naranja', 100, 3000, 'Vista/Img/imgProductos/naranja.jpg', 1),
-(2, 'Fresas', 100, 3000, 'Vista/Img/imgProductos/fresa.jpg', 1),
-(3, 'Manzanas', 100, 2400, 'Vista/Img/imgProductos/manzana.jpg', 1),
+(1, 'Naranja', 77, 3000, 'Vista/Img/imgProductos/naranja.jpg', 1),
+(2, 'Fresas', 84, 3000, 'Vista/Img/imgProductos/fresa.jpg', 1),
+(3, 'Manzanas', 92, 2400, 'Vista/Img/imgProductos/manzana.jpg', 1),
 (4, 'Peras', 100, 3400, 'Vista/Img/imgProductos/pera.jpg', 1),
-(5, 'Bananos', 100, 1400, 'Vista/Img/imgProductos/banano.jpg', 0),
+(5, 'Bananos', 110, 1400, 'Vista/Img/imgProductos/banano.jpg', 0),
 (6, 'Mandarina', 100, 2600, 'Vista/Img/imgProductos/mandarina.jpg', 0),
 (8, 'Mango', 100, 3000, 'Vista/Img/imgProductos/mango.jpg', 0),
 (41, 'Moras', 100, 5500, 'Vista/Img/imgProductos/1594494476.jpeg', 0),
@@ -184,7 +210,6 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idProveedor`, `nombre`, `correo`, `clave`, `estado`, `codigoActivacion`, `foto`) VALUES
-(2, 'Santiago Alejandro', '321@321.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 1, 1, 'Vista/Img/Users/1594403487.jpeg'),
 (33, 'Jose', 'Jose@Hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 1, 1, ''),
 (34, 'Mauricio', 'Mauricio@Hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 1, 1, ''),
 (35, 'Angel', 'Angel@Hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 1, 1, ''),
@@ -204,6 +229,13 @@ CREATE TABLE `proveedorproducto` (
   `precio` int(50) NOT NULL,
   `fecha` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `proveedorproducto`
+--
+
+INSERT INTO `proveedorproducto` (`idProveedorProducto`, `idProducto`, `idProveedor`, `cantidad`, `precio`, `fecha`) VALUES
+(25, 5, 33, 10, 700, '2020-09-12 20:13:19');
 
 --
 -- Indexes for dumped tables
@@ -276,43 +308,43 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `facturaproducto`
 --
 ALTER TABLE `facturaproducto`
-  MODIFY `idfacturaProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `idfacturaProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `idLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=422;
+  MODIFY `idLog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
 
 --
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `proveedorproducto`
 --
 ALTER TABLE `proveedorproducto`
-  MODIFY `idProveedorProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idProveedorProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
